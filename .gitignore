@@ -1,0 +1,64 @@
+﻿# -- Logs --------------------------------------------------------------------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# -- Frontend ----------------------------------------------------------------
+node_modules
+dist
+dist-ssr
+*.local
+
+# -- Editor ------------------------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# -- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.class
+*.pyo
+.Python
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+*.egg
+.eggs/
+build/
+htmlcov/
+.coverage
+.tox/
+
+# -- Python virtual environment ----------------------------------------------
+backend/venv/
+venv/
+.venv/
+env/
+
+# -- Database files ----------------------------------------------------------
+*.db
+*.sqlite
+*.sqlite3
+backend/instance/
+
+# -- ML artifacts (run ml/src/train.py to recreate) --------------------------
+ml/models/*.pkl
+ml/models/*.joblib
+ml/data/*.csv
+
+# -- Secrets / environment ---------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.pem

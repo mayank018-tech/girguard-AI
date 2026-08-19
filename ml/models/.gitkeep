@@ -1,0 +1,4 @@
+# Generated ML model artifacts
+# These files are produced by ml/src/train.py
+*.pkl
+*.joblib

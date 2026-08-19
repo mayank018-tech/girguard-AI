@@ -1,0 +1,12 @@
+// ⚠️ DEMO DATA — Synthetic incidents for development/demonstration only.
+
+export const mockIncidents = [
+  { id: 'INC-3001', village: 'Jamwala',   species: 'Asiatic Lion', severity: 'CRITICAL', detected: '2024-01-15T20:30:00Z', assignedTeam: 'Rapid Response Team Alpha', status: 'ACTIVE',      type: 'Proximity Alert',     description: 'Sub-adult male lion territorial marking near residential boundary.' },
+  { id: 'INC-3002', village: 'Visavadar', species: 'Asiatic Lion', severity: 'CRITICAL', detected: '2024-01-15T21:10:00Z', assignedTeam: 'Mobile Patrol Unit 3',      status: 'RESPONDING',  type: 'Road Crossing',       description: 'Pride of 3 lions crossing forest-edge road, traffic halted.' },
+  { id: 'INC-3003', village: 'Sasan Gir', species: 'Asiatic Lion', severity: 'HIGH',     detected: '2024-01-15T18:45:00Z', assignedTeam: 'Beat Guard Team B',         status: 'MONITORING',  type: 'Proximity Alert',     description: 'Adult male near water trough, monitoring ongoing.' },
+  { id: 'INC-3004', village: 'Maliya',    species: 'Leopard',      severity: 'HIGH',     detected: '2024-01-15T05:20:00Z', assignedTeam: 'Beat Guard Team C',         status: 'MONITORING',  type: 'Livestock Threat',    description: 'Leopard surveilling cattle pen. Livestock secured.' },
+  { id: 'INC-3005', village: 'Talala',    species: 'Asiatic Lion', severity: 'HIGH',     detected: '2024-01-15T06:15:00Z', assignedTeam: 'Rapid Response Team Beta',  status: 'RESOLVED',    type: 'Maternal Aggression', description: 'Lioness with cubs. Safe dispersal confirmed by 09:30.' },
+  { id: 'INC-3006', village: 'Mendarda',  species: 'Leopard',      severity: 'MODERATE', detected: '2024-01-13T12:00:00Z', assignedTeam: 'Beat Guard Team A',         status: 'RESOLVED',    type: 'Unverified Sighting', description: 'Citizen report awaiting field verification.' },
+  { id: 'INC-3007', village: 'Kodinar',   species: 'Leopard',      severity: 'MODERATE', detected: '2024-01-14T03:40:00Z', assignedTeam: 'Night Patrol Unit 1',       status: 'RESOLVED',    type: 'Agricultural Transit', description: 'Leopard transiting agricultural land, no livestock loss.' },
+  { id: 'INC-3008', village: 'Sasan Gir', species: 'Hyena',        severity: 'LOW',      detected: '2024-01-14T22:00:00Z', assignedTeam: 'Beat Guard Team B',         status: 'RESOLVED',    type: 'Scavenging',          description: 'Hyena at waste disposal site. Area cordoned.' },
+];
