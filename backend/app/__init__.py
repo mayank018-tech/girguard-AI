@@ -43,8 +43,4 @@ def create_app(config_name: str = None) -> Flask:
     # Error handlers
     register_error_handlers(app)
 
-    # Create tables (dev only — use migrations in production)
-    with app.app_context():
-        db.create_all()
-
     return app

@@ -191,7 +191,7 @@ def features_to_dataframe(features: dict) -> pd.DataFrame:
     return pd.DataFrame([row])[FEATURE_COLS]
 
 
-def explain_features(features: dict, importances: dict) -> list[str]:
+def explain_features(features: dict, importances: dict) -> list:
     """
     Generate human-readable top factors based on feature values and importances.
 
