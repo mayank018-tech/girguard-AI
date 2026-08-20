@@ -1,15 +1,9 @@
-"""GirGuard AI - Development entry point.
-
-Usage:
-    python run.py
-
-Production:
-    gunicorn -w 4 -b 0.0.0.0:5000 "app:create_app()"
-"""
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from app import create_app
-
 app = create_app()
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)

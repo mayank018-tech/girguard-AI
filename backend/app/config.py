@@ -35,8 +35,8 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     DEBUG = False
-    # PostgreSQL on IBM Cloud — must be set via environment variable
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    # PostgreSQL on IBM Cloud / Supabase
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite:///girguard_dev.db")
     if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
         # Fix for SQLAlchemy 1.4+ requiring postgresql://
         SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace(
