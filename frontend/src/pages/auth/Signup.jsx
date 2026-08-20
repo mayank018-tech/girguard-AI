@@ -1,0 +1,93 @@
+import React, { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate, Link } from 'react-router-dom';
+import { Leaf, Lock, Mail, User, Shield } from 'lucide-react';
+
+const Signup = () => {
+    const { signup } = useAuth();
+    const navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [roleCode, setRoleCode] = useState('');
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await signup(name, email, password, roleCode);
+            navigate('/login');
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    return (
+        <div className="min-h-screen bg-earth-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-md">
+                <div className="flex justify-center">
+                    <div className="bg-forest-500 p-3 rounded-full">
+                        <Leaf className="h-10 w-10 text-white" />
+                    </div>
+                </div>
+                <h2 className="mt-6 text-center text-3xl font-extrabold text-earth-50">Create an account</h2>
+            </div>
+            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <div className="bg-earth-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-earth-700">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
+                        {error && <div className="text-red-400 text-sm text-center">{error}</div>}
+                        <div>
+                            <label className="block text-sm font-medium text-earth-200">Full Name</label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <User className="h-5 w-5 text-earth-400" />
+                                </div>
+                                <input type="text" required value={name} onChange={(e) => setName(e.target.value)}
+                                    className="focus:ring-forest-500 focus:border-forest-500 block w-full pl-10 sm:text-sm border-earth-600 bg-earth-700 text-earth-50 rounded-md py-2" />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-earth-200">Email address</label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <Mail className="h-5 w-5 text-earth-400" />
+                                </div>
+                                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                                    className="focus:ring-forest-500 focus:border-forest-500 block w-full pl-10 sm:text-sm border-earth-600 bg-earth-700 text-earth-50 rounded-md py-2" />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-earth-200">Password</label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <Lock className="h-5 w-5 text-earth-400" />
+                                </div>
+                                <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)}
+                                    className="focus:ring-forest-500 focus:border-forest-500 block w-full pl-10 sm:text-sm border-earth-600 bg-earth-700 text-earth-50 rounded-md py-2" />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-earth-200">Department Code (Optional)</label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <Shield className="h-5 w-5 text-earth-400" />
+                                </div>
+                                <input type="password" placeholder="For Forest Guards Only" value={roleCode} onChange={(e) => setRoleCode(e.target.value)}
+                                    className="focus:ring-forest-500 focus:border-forest-500 block w-full pl-10 sm:text-sm border-earth-600 bg-earth-700 text-earth-50 rounded-md py-2" />
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-forest-600 hover:bg-forest-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-forest-500">
+                                Sign up
+                            </button>
+                        </div>
+                    </form>
+                    <div className="mt-6 text-center text-sm">
+                        <Link to="/login" className="text-forest-400 hover:text-forest-300">Already have an account? Sign in</Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+export default Signup;

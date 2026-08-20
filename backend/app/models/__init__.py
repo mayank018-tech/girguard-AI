@@ -1,4 +1,4 @@
-"""GirGuard AI — Database models package."""
+"""GirGuard AI ??? Database models package."""
 
 from .village import Village
 from .sighting import WildlifeSighting, SpeciesEnum, SourceEnum, VerificationEnum
@@ -8,6 +8,7 @@ from .incident import Incident, IncidentStatusEnum, SeverityEnum
 from .response_team import ResponseTeam
 from .livestock_loss import LivestockLoss, LossStatusEnum
 from .tourist_incident import TouristIncident
+from .user import User
 
 __all__ = [
     "Village",
@@ -19,3 +20,4 @@ __all__ = [
     "LivestockLoss", "LossStatusEnum",
     "TouristIncident",
 ]
+

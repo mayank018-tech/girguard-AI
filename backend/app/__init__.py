@@ -34,9 +34,11 @@ def create_app(config_name: str = None) -> Flask:
     from .routes.livestock_loss import bp as livestock_bp
     from .routes.tourist_incidents import bp as tourist_bp
 
+    from .routes.auth import bp as auth_bp
+
     for blueprint in [
         health_bp, villages_bp, sightings_bp, risk_bp,
-        alerts_bp, incidents_bp, teams_bp, livestock_bp, tourist_bp,
+        alerts_bp, incidents_bp, teams_bp, livestock_bp, tourist_bp, auth_bp
     ]:
         app.register_blueprint(blueprint)
 
