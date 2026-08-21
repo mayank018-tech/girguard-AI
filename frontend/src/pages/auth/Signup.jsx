@@ -15,8 +15,9 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await signup(name, email, password, roleCode);
-            navigate('/login');
+            const user = await signup(name, email, password, roleCode);
+            if (user.role === 'DEPARTMENT') navigate('/dashboard');
+            else navigate('/public');
         } catch (err) {
             setError(err.message);
         }
