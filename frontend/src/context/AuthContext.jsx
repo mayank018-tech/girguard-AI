@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+﻿import React, { createContext, useState, useEffect, useContext } from 'react';
 import { API_BASE_URL } from '../services/api/config';
 
 const AuthContext = createContext();
@@ -37,6 +37,8 @@ export const AuthProvider = ({ children }) => {
         });
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.user.role);
+        localStorage.setItem('name', data.user.name);
+        localStorage.setItem('email', data.user.email);
         setUser(data.user);
         return data.user;
     };
@@ -48,6 +50,8 @@ export const AuthProvider = ({ children }) => {
         });
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.user.role);
+        localStorage.setItem('name', data.user.name);
+        localStorage.setItem('email', data.user.email);
         setUser(data.user);
         return data.user;
     };
@@ -55,6 +59,8 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
+        localStorage.removeItem('name');
+        localStorage.removeItem('email');
         setUser(null);
     };
 
@@ -66,3 +72,4 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
