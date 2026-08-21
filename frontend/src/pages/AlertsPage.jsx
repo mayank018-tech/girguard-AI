@@ -78,7 +78,7 @@ export default function AlertsPage() {
         </button>
       </div>
 
-      {loading ? <LoadingSpinner text="Loading alerts…" /> : (
+      {loading ? <LoadingSpinner text="Loading alerts???" /> : (
         <div className="space-y-3">
           {filtered.length === 0 && (
             <div className="text-center py-12 text-gray-500">No alerts match the selected filters.</div>
@@ -95,13 +95,13 @@ export default function AlertsPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 flex-wrap">
                       <span className="font-semibold text-white">{alert.village}</span>
-                      <span className="text-gray-400 text-sm">·</span>
+                      <span className="text-gray-400 text-sm">??</span>
                       <span className="text-sm text-gray-300">{alert.animal}</span>
                       <span className="text-xs text-gray-500 font-mono">{alert.id}</span>
                     </div>
                     <p className="text-sm text-gray-400 mt-1">{alert.reason}</p>
                     <div className="flex items-center gap-4 mt-2 flex-wrap">
-                      <span className="text-xs text-gray-500">🕐 {formatTime(alert.time)}</span>
+                      <span className="text-xs text-gray-500">???? {formatTime(alert.time)}</span>
                       <span className="text-xs text-gray-500">Confidence: <span className="text-gray-300">{alert.confidence}%</span></span>
                     </div>
                   </div>

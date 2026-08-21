@@ -55,7 +55,7 @@ export default function ReportSightingPage() {
     return (
       <div className="max-w-lg mx-auto">
         <div className="bg-gray-800 border border-green-700 rounded-xl p-8 text-center space-y-4">
-          <div className="text-5xl">✅</div>
+          <div className="text-5xl">???</div>
           <h2 className="text-xl font-bold text-green-300">Sighting Submitted</h2>
           <div className="bg-gray-900 rounded-lg p-4 text-left space-y-2">
             <div className="flex justify-between text-sm">
@@ -95,7 +95,7 @@ export default function ReportSightingPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <Field label="Species *" error={errors.species}>
             <select value={form.species} onChange={e => setForm(f => ({ ...f, species: e.target.value }))} className={inputCls}>
-              <option value="">Select species…</option>
+              <option value="">Select species???</option>
               {SPECIES_OPTS.map(s => <option key={s}>{s}</option>)}
             </select>
           </Field>
@@ -116,20 +116,20 @@ export default function ReportSightingPage() {
 
           <Field label="Nearest Village *" error={errors.village}>
             <select value={form.village} onChange={e => setForm(f => ({ ...f, village: e.target.value }))} className={inputCls}>
-              <option value="">Select village…</option>
+              <option value="">Select village???</option>
               {VILLAGE_OPTS.map(v => <option key={v}>{v}</option>)}
             </select>
           </Field>
 
           <Field label="Approximate Location">
-            <input type="text" placeholder="e.g. Near water tank, north of forest road…" value={form.location} onChange={e => setForm(f => ({ ...f, location: e.target.value }))} className={inputCls} />
+            <input type="text" placeholder="e.g. Near water tank, north of forest road???" value={form.location} onChange={e => setForm(f => ({ ...f, location: e.target.value }))} className={inputCls} />
           </Field>
         </div>
 
         <Field label="Description *" error={errors.description}>
           <textarea
             rows={4}
-            placeholder="Describe what you observed: number of animals, behaviour, direction of movement…"
+            placeholder="Describe what you observed: number of animals, behaviour, direction of movement???"
             value={form.description}
             onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
             className={inputCls}
@@ -138,13 +138,13 @@ export default function ReportSightingPage() {
 
         <Field label="Photo Evidence (Optional)">
           <div className="bg-gray-900 border border-dashed border-gray-600 rounded-lg px-4 py-6 text-center">
-            <div className="text-gray-500 text-sm">📷 Image upload available in Phase 2 (IBM Cloud Storage)</div>
+            <div className="text-gray-500 text-sm">???? Image upload available in Phase 2 (IBM Cloud Storage)</div>
             <div className="text-xs text-gray-600 mt-1">Future: Upload to IBM Cloud Object Storage</div>
           </div>
         </Field>
 
         <div className="bg-amber-950/40 border border-amber-700/40 rounded-lg px-3 py-2 text-xs text-amber-400">
-          ⚠ This is a DEMO form. Submission is simulated. No real data is transmitted.
+          ??? This is a DEMO form. Submission is simulated. No real data is transmitted.
         </div>
 
         <button
@@ -152,7 +152,7 @@ export default function ReportSightingPage() {
           disabled={submitting}
           className="w-full bg-green-700 hover:bg-green-600 disabled:bg-gray-700 disabled:text-gray-500 text-white font-semibold py-3 rounded-lg transition-colors text-sm"
         >
-          {submitting ? 'Submitting…' : 'Submit Sighting Report'}
+          {submitting ? 'Submitting???' : 'Submit Sighting Report'}
         </button>
       </form>
     </div>

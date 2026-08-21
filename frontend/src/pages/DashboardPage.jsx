@@ -16,7 +16,7 @@ export default function DashboardPage() {
       });
   }, []);
 
-  if (!data) return <LoadingSpinner text="Loading Dashboard…" />;
+  if (!data) return <LoadingSpinner text="Loading Dashboard???" />;
 
   const activeAlerts   = data.alerts.filter(a => a.status !== 'RESOLVED');
   const criticalVillages = data.villages.filter(v => v.riskLevel === 'CRITICAL' || v.riskLevel === 'HIGH');
@@ -31,7 +31,7 @@ export default function DashboardPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">Gir Forest Overview</h1>
-          <p className="text-sm text-gray-400 mt-1">Wildlife Conflict Command Dashboard · Gir, Gujarat</p>
+          <p className="text-sm text-gray-400 mt-1">Wildlife Conflict Command Dashboard ?? Gir, Gujarat</p>
         </div>
         <div className="text-xs text-gray-500 hidden sm:block">
           Last updated: {new Date().toLocaleTimeString('en-IN')}
@@ -40,16 +40,16 @@ export default function DashboardPage() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
-        <StatCard label="Active Alerts"    value={activeAlerts.length}      icon="🚨" color="text-red-400"    alert={activeAlerts.length > 0} sub="Unresolved alerts" />
-        <StatCard label="High-Risk Villages" value={criticalVillages.length} icon="🏘️" color="text-orange-400" sub="HIGH or CRITICAL" />
-        <StatCard label="Sightings (24h)"  value={data.sightings.length}    icon="🦁" color="text-yellow-400" sub="Verified + Pending" />
-        <StatCard label="Active Incidents" value={activeIncidents.length}   icon="⚡" color="text-purple-400" sub="Open incidents" />
-        <StatCard label="Avg Response"     value={avgResponse}              icon="⏱️" color="text-blue-400"   sub="Last 7 days" />
+        <StatCard label="Active Alerts"    value={activeAlerts.length}      icon="????" color="text-red-400"    alert={activeAlerts.length > 0} sub="Unresolved alerts" />
+        <StatCard label="High-Risk Villages" value={criticalVillages.length} icon="???????" color="text-orange-400" sub="HIGH or CRITICAL" />
+        <StatCard label="Sightings (24h)"  value={data.sightings.length}    icon="????" color="text-yellow-400" sub="Verified + Pending" />
+        <StatCard label="Active Incidents" value={activeIncidents.length}   icon="???" color="text-purple-400" sub="Open incidents" />
+        <StatCard label="Avg Response"     value={avgResponse}              icon="??????" color="text-blue-400"   sub="Last 7 days" />
       </div>
 
       {/* Map */}
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <SectionHeader title="Live Situational Map" subtitle="Gir Forest Region — Demo Coordinates" />
+        <SectionHeader title="Live Situational Map" subtitle="Gir Forest Region ??? Demo Coordinates" />
         <GirMap
           villages={data.villages}
           sightings={data.sightings}
@@ -65,8 +65,8 @@ export default function DashboardPage() {
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <SectionHeader
             title="Village Risk Scores"
-            subtitle={`ML predictions · model ${data.risks[0]?.model_version || 'rf-v1'}`}
-            action={<Link to="/hotspots" className="text-xs text-green-400 hover:underline">View All →</Link>}
+            subtitle={`ML predictions ?? model ${data.risks[0]?.model_version || 'rf-v1'}`}
+            action={<Link to="/hotspots" className="text-xs text-green-400 hover:underline">View All ???</Link>}
           />
           <div className="space-y-2">
             {data.risks.slice(0, 6).map(r => (
@@ -109,7 +109,7 @@ export default function DashboardPage() {
             ))}
           </div>
           <div className="mt-2 text-xs text-gray-600">
-            Prediction window: 6h · Last updated: {new Date().toLocaleTimeString('en-IN')}
+            Prediction window: 6h ?? Last updated: {new Date().toLocaleTimeString('en-IN')}
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export default function DashboardPage() {
           <SectionHeader
             title="Recent Alerts"
             subtitle="Latest wildlife proximity alerts"
-            action={<Link to="/alerts" className="text-xs text-green-400 hover:underline">View All →</Link>}
+            action={<Link to="/alerts" className="text-xs text-green-400 hover:underline">View All ???</Link>}
           />
           <div className="space-y-2">
             {data.alerts.slice(0, 6).map(a => (
@@ -127,7 +127,7 @@ export default function DashboardPage() {
                   <RiskBadge level={a.riskLevel} size="xs" />
                   <div className="min-w-0">
                     <div className="text-sm text-gray-200 truncate">{a.village}</div>
-                    <div className="text-xs text-gray-500">{a.animal} · {timeAgo(a.time)}</div>
+                    <div className="text-xs text-gray-500">{a.animal} ?? {timeAgo(a.time)}</div>
                   </div>
                 </div>
                 <StatusBadge status={a.status} />
@@ -141,8 +141,8 @@ export default function DashboardPage() {
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
         <SectionHeader
           title="Recent Wildlife Sightings"
-          subtitle="Last 24 hours — verified + pending"
-          action={<Link to="/report-sighting" className="text-xs text-green-400 hover:underline">+ Report →</Link>}
+          subtitle="Last 24 hours ??? verified + pending"
+          action={<Link to="/report-sighting" className="text-xs text-green-400 hover:underline">+ Report ???</Link>}
         />
         <div className="overflow-x-auto">
           <table className="w-full text-sm">

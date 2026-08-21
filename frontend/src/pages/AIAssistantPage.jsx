@@ -18,7 +18,7 @@ const EXAMPLE_PROMPTS = [
 const INIT_MESSAGES = [
   {
     role: 'assistant',
-    text: 'Hello. I am the GirGuard AI Copilot.\n\nI can assist with:\n• Village risk analysis\n• Incident summaries\n• Wildlife activity patterns\n• Response team status\n• Conflict reports\n• Tourist safety assessments\n\nNote: IBM Granite LLM integration is planned for Phase 2. I am currently operating with mock responses.',
+    text: 'Hello. I am the GirGuard AI Copilot.\n\nI can assist with:\n??? Village risk analysis\n??? Incident summaries\n??? Wildlife activity patterns\n??? Response team status\n??? Conflict reports\n??? Tourist safety assessments\n\nNote: IBM Granite LLM integration is planned for Phase 2. I am currently operating with mock responses.',
     source: 'mock'
   }
 ];
@@ -63,7 +63,7 @@ export default function AIAssistantPage() {
 
       {/* IBM Granite info panel */}
       <div className="bg-indigo-950/40 border border-indigo-700/40 rounded-xl p-4 text-sm text-indigo-200 space-y-2">
-        <div className="font-semibold text-indigo-300 flex items-center gap-2">🤖 About IBM Granite Integration</div>
+        <div className="font-semibold text-indigo-300 flex items-center gap-2">???? About IBM Granite Integration</div>
         <ul className="list-disc list-inside text-xs text-indigo-300/80 space-y-1">
           <li>Current: Mock AI responses based on synthetic data.</li>
           <li>Phase 2: IBM Granite LLM via IBM WatsonX + IBM Cloud backend.</li>
@@ -82,7 +82,7 @@ export default function AIAssistantPage() {
               }`}>
                 {m.role === 'assistant' && (
                   <div className="flex items-center gap-2 text-xs text-indigo-400 mb-2 font-medium">
-                    🤖 GirGuard AI Copilot {m.source === 'mock' && <span className="text-gray-500">(mock)</span>}
+                    ???? GirGuard AI Copilot {m.source === 'mock' && <span className="text-gray-500">(mock)</span>}
                   </div>
                 )}
                 {m.text}
@@ -95,7 +95,7 @@ export default function AIAssistantPage() {
                 <span className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                <span className="ml-1 text-xs">Copilot thinking…</span>
+                <span className="ml-1 text-xs">Copilot thinking???</span>
               </div>
             </div>
           )}
@@ -124,7 +124,7 @@ export default function AIAssistantPage() {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder="Ask about incidents, risk predictions, wildlife activity, village status… (Enter to send)"
+              placeholder="Ask about incidents, risk predictions, wildlife activity, village status??? (Enter to send)"
               disabled={thinking}
               className="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-gray-200 focus:outline-none focus:border-indigo-600 resize-none"
             />
@@ -133,11 +133,11 @@ export default function AIAssistantPage() {
               disabled={thinking || !input.trim()}
               className="bg-indigo-700 hover:bg-indigo-600 disabled:bg-gray-700 disabled:text-gray-500 text-white font-semibold px-5 rounded-xl transition-colors text-sm self-stretch"
             >
-              {thinking ? '…' : 'Send'}
+              {thinking ? '???' : 'Send'}
             </button>
           </div>
           <div className="text-xs text-gray-600 mt-2">
-            Shift+Enter for new line · Enter to send · IBM Granite integration: Phase 2
+            Shift+Enter for new line ?? Enter to send ?? IBM Granite integration: Phase 2
           </div>
         </div>
       </div>

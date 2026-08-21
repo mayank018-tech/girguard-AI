@@ -2,7 +2,7 @@
  * Mock GIS Map Component
  *
  * Renders a canvas-based pseudo-map visualization of the Gir Forest region.
- * Uses DEMO coordinates — not real wildlife locations.
+ * Uses DEMO coordinates ??? not real wildlife locations.
  *
  * Future: Replace with Leaflet.js / Mapbox GL with real GIS data from IBM Cloud.
  */
@@ -36,7 +36,7 @@ export default function GirMap({ villages = [], sightings = [], hotspots = [], t
     const w = canvas.width;
     const h = canvas.height;
 
-    // Background — forest green gradient
+    // Background ??? forest green gradient
     const grad = ctx.createRadialGradient(w / 2, h / 2, 60, w / 2, h / 2, w * 0.7);
     grad.addColorStop(0, '#14532d');
     grad.addColorStop(0.5, '#166534');
@@ -118,7 +118,7 @@ export default function GirMap({ villages = [], sightings = [], hotspots = [], t
     // Demo watermark
     ctx.fillStyle = 'rgba(255,200,0,0.18)';
     ctx.font = 'bold 11px system-ui';
-    ctx.fillText('⚠ DEMO COORDINATES — NOT REAL WILDLIFE LOCATIONS', 10, h - 8);
+    ctx.fillText('??? DEMO COORDINATES ??? NOT REAL WILDLIFE LOCATIONS', 10, h - 8);
 
     // Legend
     const legX = w - 160; const legY = h - 100;
@@ -127,11 +127,11 @@ export default function GirMap({ villages = [], sightings = [], hotspots = [], t
     ctx.roundRect(legX - 6, legY - 14, 154, 100, 6);
     ctx.fill();
     const legendItems = [
-      { col: '#fde68a', label: '◆ Asiatic Lion' },
-      { col: '#a78bfa', label: '◆ Leopard' },
-      { col: '#f97316', label: '▲ Response Team' },
-      { col: '#f87171', label: '● Critical Village' },
-      { col: '#34d399', label: '● Low Risk Village' },
+      { col: '#fde68a', label: '??? Asiatic Lion' },
+      { col: '#a78bfa', label: '??? Leopard' },
+      { col: '#f97316', label: '??? Response Team' },
+      { col: '#f87171', label: '??? Critical Village' },
+      { col: '#34d399', label: '??? Low Risk Village' },
     ];
     legendItems.forEach((item, i) => {
       ctx.fillStyle = item.col;
@@ -150,7 +150,7 @@ export default function GirMap({ villages = [], sightings = [], hotspots = [], t
         style={{ display: 'block' }}
       />
       <div className="absolute top-2 right-2 text-xs bg-black/60 text-gray-300 px-2 py-1 rounded border border-gray-700">
-        Mock Geospatial View · Future: IBM Cloud GIS
+        Mock Geospatial View ?? Future: IBM Cloud GIS
       </div>
     </div>
   );

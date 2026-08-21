@@ -26,7 +26,7 @@ export default function HotspotsPage() {
       <DemoDataBanner />
       <div>
         <h1 className="text-2xl font-bold text-white">Conflict Hotspot Analytics</h1>
-        <p className="text-sm text-gray-400 mt-1">Pattern analysis across Gir Forest villages — synthetic demo data</p>
+        <p className="text-sm text-gray-400 mt-1">Pattern analysis across Gir Forest villages ??? synthetic demo data</p>
       </div>
 
       {/* Row 1 */}
@@ -109,7 +109,7 @@ export default function HotspotsPage() {
       </ChartCard>
 
       <div className="text-xs text-gray-600 text-center pb-2">
-        ⚠ All analytics data is synthetic demo data for development purposes only. Not based on real wildlife statistics.
+        ??? All analytics data is synthetic demo data for development purposes only. Not based on real wildlife statistics.
       </div>
     </div>
   );

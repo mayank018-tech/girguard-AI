@@ -68,7 +68,7 @@ export default function IncidentsPage() {
         ))}
       </div>
 
-      {loading ? <LoadingSpinner text="Loading incidents…" /> : (
+      {loading ? <LoadingSpinner text="Loading incidents???" /> : (
         <div className="space-y-3">
           {filtered.map(inc => (
             <div key={inc.id} className="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
@@ -84,16 +84,16 @@ export default function IncidentsPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="font-semibold text-white">{inc.village}</span>
-                      <span className="text-gray-500">·</span>
+                      <span className="text-gray-500">??</span>
                       <span className="text-sm text-gray-300">{inc.species}</span>
-                      <span className="text-xs text-gray-500">· {inc.type}</span>
+                      <span className="text-xs text-gray-500">?? {inc.type}</span>
                       <span className="font-mono text-xs text-gray-600">{inc.id}</span>
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
-                      {timeAgo(inc.detected)} · Team: {inc.assignedTeam}
+                      {timeAgo(inc.detected)} ?? Team: {inc.assignedTeam}
                     </div>
                   </div>
-                  <span className="text-gray-500 text-sm">{expanded === inc.id ? '▲' : '▼'}</span>
+                  <span className="text-gray-500 text-sm">{expanded === inc.id ? '???' : '???'}</span>
                 </div>
               </div>
               {expanded === inc.id && (

@@ -7,7 +7,7 @@ export function RiskBadge({ level, score, showScore = false, size = 'sm' }) {
   return (
     <span className={clsx('inline-flex items-center gap-1.5 rounded font-bold border', cfg.bg, cfg.color, cfg.border, sizes[size])}>
       <span className={clsx('w-1.5 h-1.5 rounded-full', cfg.dot)} />
-      {level}{showScore && score !== undefined && ` · ${score}`}
+      {level}{showScore && score !== undefined && ` ?? ${score}`}
     </span>
   );
 }

@@ -20,7 +20,7 @@ const EXAMPLE_PROMPTS = [
 export default function ForestCommandPage() {
   const [data, setData]       = useState(null);
   const [messages, setMessages] = useState([
-    { role: 'assistant', text: 'GirGuard AI Copilot ready. Ask about incidents, risk predictions, village status, or request a conflict report. Note: IBM Granite integration coming in next phase — currently using mock responses.' }
+    { role: 'assistant', text: 'GirGuard AI Copilot ready. Ask about incidents, risk predictions, village status, or request a conflict report. Note: IBM Granite integration coming in next phase ??? currently using mock responses.' }
   ]);
   const [input, setInput]    = useState('');
   const [thinking, setThinking] = useState(false);
@@ -47,7 +47,7 @@ export default function ForestCommandPage() {
     }
   }
 
-  if (!data) return <LoadingSpinner text="Loading Forest Command…" />;
+  if (!data) return <LoadingSpinner text="Loading Forest Command???" />;
 
   const activeInc  = data.incidents.filter(i => i.status !== 'RESOLVED');
   const criticalR  = data.risks.filter(r => r.riskLevel === 'CRITICAL').length;
@@ -88,7 +88,7 @@ export default function ForestCommandPage() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {/* Map */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-          <SectionHeader title="GIS Situational Map" subtitle="Real-time positions — demo coordinates" />
+          <SectionHeader title="GIS Situational Map" subtitle="Real-time positions ??? demo coordinates" />
           <GirMap villages={data.villages} sightings={data.sightings} hotspots={data.hotspots} teams={data.teams} height={320} />
         </div>
 
@@ -96,8 +96,8 @@ export default function ForestCommandPage() {
         <div className="bg-gray-800 border border-indigo-800/40 rounded-xl flex flex-col" style={{ minHeight: '400px' }}>
           <div className="px-4 pt-4 pb-3 border-b border-gray-700 flex items-center justify-between">
             <div>
-              <div className="text-sm font-semibold text-indigo-300">🤖 IBM Granite AI Copilot</div>
-              <div className="text-xs text-indigo-500">Mock responses · IBM Granite integration: next phase</div>
+              <div className="text-sm font-semibold text-indigo-300">???? IBM Granite AI Copilot</div>
+              <div className="text-xs text-indigo-500">Mock responses ?? IBM Granite integration: next phase</div>
             </div>
             <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" title="Mock mode" />
           </div>
@@ -113,7 +113,7 @@ export default function ForestCommandPage() {
             {thinking && (
               <div className="flex justify-start">
                 <div className="bg-gray-700 rounded-xl px-3 py-2 text-sm text-gray-400 flex items-center gap-2">
-                  <span className="animate-pulse">●●●</span> Thinking…
+                  <span className="animate-pulse">?????????</span> Thinking???
                 </div>
               </div>
             )}
@@ -129,7 +129,7 @@ export default function ForestCommandPage() {
             <input
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder="Ask about incidents, risk, villages…"
+              placeholder="Ask about incidents, risk, villages???"
               className="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-indigo-600"
               disabled={thinking}
             />
@@ -175,7 +175,7 @@ export default function ForestCommandPage() {
 
       {/* Risk Forecast */}
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <SectionHeader title="6-Hour Risk Forecast" subtitle="Predicted regional risk level — mock model" />
+        <SectionHeader title="6-Hour Risk Forecast" subtitle="Predicted regional risk level ??? mock model" />
         <div style={{ height: 180 }}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={mockRiskForecast} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
@@ -187,7 +187,7 @@ export default function ForestCommandPage() {
             </LineChart>
           </ResponsiveContainer>
         </div>
-        <div className="text-xs text-gray-500 mt-2">ML risk prediction engine active (rf-v1) · Synthetic training data · Validate with field data before operational deployment</div>
+        <div className="text-xs text-gray-500 mt-2">ML risk prediction engine active (rf-v1) ?? Synthetic training data ?? Validate with field data before operational deployment</div>
       </div>
     </div>
   );

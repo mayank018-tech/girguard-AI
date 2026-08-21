@@ -20,7 +20,7 @@ import PublicDashboard from '../pages/public/PublicDashboard';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
     const { user, loading } = useAuth();
-    if (loading) return <div className="min-h-screen bg-earth-900 flex items-center justify-center text-white">Loading...</div>;
+    if (loading) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Loading...</div>;
     if (!user) return <Navigate to="/login" />;
     if (requiredRole && user.role !== requiredRole) {
         return <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : '/public'} />;
@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
 
 const AppRouter = () => {
     const { user, loading } = useAuth();
-    if (loading) return <div className="min-h-screen bg-earth-900 flex items-center justify-center text-white">Loading...</div>;
+    if (loading) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Loading...</div>;
 
     return (
         <Routes>
