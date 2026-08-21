@@ -55,8 +55,8 @@ export default function ForestCommandPage() {
   if (!data) return <LoadingSpinner text="Loading Forest Command..." />;
 
   const activeInc  = incidents.filter(i => i.status !== 'RESOLVED');
-  const criticalR  = risks.filter(r => r.riskLevel === 'CRITICAL').length;
-  const deployedT  = teams.filter(t => t.status === 'DEPLOYED' || t.status === 'PATROLLING').length;
+  const criticalR = risks ? risks.filter(r => r.riskLevel === 'CRITICAL').length : '...';
+  const deployedT = teams ? teams.filter(t => t.status === 'DEPLOYED' || t.status === 'PATROLLING').length : '...';
 
   return (
     <div className="space-y-5">
@@ -72,7 +72,7 @@ export default function ForestCommandPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <div className="bg-gray-800 border border-red-800/50 rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-red-400">{activeInc.length}</div>
+          <div className="text-3xl font-bold text-red-400">{activeInc ? activeInc.length : '...'}</div>
           <div className="text-xs text-gray-400">Active Incidents</div>
         </div>
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 text-center">
@@ -94,7 +94,7 @@ export default function ForestCommandPage() {
         {/* Map */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <SectionHeader title="GIS Situational Map" subtitle="Real-time positions ... demo coordinates" />
-          <GirMap villages={villages} sightings={sightings} hotspots={hotspots} teams={teams} height={320} />
+          {!villages || !sightings || !hotspots || !teams ? <div className="h-[400px] flex items-center justify-center"><LoadingSpinner /></div> : <GirMap villages={villages} sightings={sightings} hotspots={hotspots} teams={teams} height={320} />
         </div>
 
         {/* AI Copilot */}
@@ -197,4 +197,5 @@ export default function ForestCommandPage() {
     </div>
   );
 }
+
 
