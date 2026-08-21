@@ -25,8 +25,12 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     const { user, loading } = useAuth();
     if (loading) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Loading...</div>;
     if (!user) return <Navigate to="/login" />;
+    
+    // If the user's role does not match the required role for this page, bounce them to their specific home
     if (requiredRole && user.role !== requiredRole) {
-        return <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : '/public'} />;
+        if (user.role === 'DEPARTMENT') return <Navigate to="/dashboard" />;
+        if (user.role === 'ADMIN') return <Navigate to="/admin" />;
+        return <Navigate to="/public" />;
     }
     return children;
 };
@@ -37,39 +41,33 @@ const AppRouter = () => {
 
     return (
         <Routes>
-            {/* Public/Auth Routes */}
             <Route path="/login" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Login />} />
             <Route path="/signup" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Signup />} />
             
-            {/* All Routes Wrapped by Dynamic Sidebar AppLayout */}
-            <Route path="/" element={
-                <ProtectedRoute requiredRole="DEPARTMENT">
-                    <AppLayout />
-                </ProtectedRoute>
-            }>
+            <Route path="/" element={<AppLayout />}>
                 <Route index element={<LandingPage />} />
-                <Route path="public" element={<ProtectedRoute requiredRole="PUBLIC"><PublicDashboard /></ProtectedRoute>} />
+                
+                {/* ADMIN ROUTES */}
                 <Route path="admin" element={<ProtectedRoute requiredRole="ADMIN"><AdminDashboard /></ProtectedRoute>} />
-                <Route path="dashboard" element={<DashboardPage />} />
-                <Route path="dashboard/verification" element={<VerificationDesk />} />
-                <Route path="alerts" element={<AlertsPage />} />
-                <Route path="report-sighting" element={<ReportSightingPage />} />
-                <Route path="livestock-loss" element={<LivestockLossPage />} />
-                <Route path="tourist" element={<TouristSafetyPage />} />
-                <Route path="forest-command" element={<ForestCommandPage />} />
-                <Route path="incidents" element={<IncidentsPage />} />
-                <Route path="hotspots" element={<HotspotsPage />} />
-                <Route path="ai-assistant" element={<AIAssistantPage />} />
+                
+                {/* PUBLIC ROUTES */}
+                <Route path="public" element={<ProtectedRoute requiredRole="PUBLIC"><PublicDashboard /></ProtectedRoute>} />
+                <Route path="report-sighting" element={<ProtectedRoute requiredRole="PUBLIC"><ReportSightingPublic /></ProtectedRoute>} />
+                <Route path="livestock-loss" element={<ProtectedRoute requiredRole="PUBLIC"><LivestockLossPage /></ProtectedRoute>} />
+                <Route path="tourist" element={<ProtectedRoute requiredRole="PUBLIC"><TouristSafetyPage /></ProtectedRoute>} />
+                
+                {/* DEPARTMENT ROUTES */}
+                <Route path="dashboard" element={<ProtectedRoute requiredRole="DEPARTMENT"><DashboardPage /></ProtectedRoute>} />
+                <Route path="dashboard/verification" element={<ProtectedRoute requiredRole="DEPARTMENT"><VerificationDesk /></ProtectedRoute>} />
+                <Route path="alerts" element={<ProtectedRoute requiredRole="DEPARTMENT"><AlertsPage /></ProtectedRoute>} />
+                <Route path="incidents" element={<ProtectedRoute requiredRole="DEPARTMENT"><IncidentsPage /></ProtectedRoute>} />
+                <Route path="hotspots" element={<ProtectedRoute requiredRole="DEPARTMENT"><HotspotsPage /></ProtectedRoute>} />
+                <Route path="forest-command" element={<ProtectedRoute requiredRole="DEPARTMENT"><ForestCommandPage /></ProtectedRoute>} />
+                <Route path="ai-assistant" element={<ProtectedRoute requiredRole="DEPARTMENT"><AIAssistantPage /></ProtectedRoute>} />
             </Route>
 
-            
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
     );
 };
 export default AppRouter;
-
-
-
-
-
