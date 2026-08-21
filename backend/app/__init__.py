@@ -46,5 +46,9 @@ def create_app(config_name: str = None) -> Flask:
     # Error handlers
     register_error_handlers(app)
 
+    from app.routes import stats_bp
+    app.register_blueprint(stats_bp)
+
     return app
+
 
