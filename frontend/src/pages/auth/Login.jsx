@@ -21,6 +21,16 @@ const Login = () => {
         }
     };
 
+    const handleDemoLogin = async (roleEmail) => {
+        try {
+            const user = await login(roleEmail, 'password123'); // Assuming standard mock password
+            if (user.role === 'DEPARTMENT' || user.role === 'ADMIN') navigate('/dashboard');
+            else navigate('/public');
+        } catch (err) {
+            setError('Demo login failed: ' + err.message + '. Please ensure database is seeded.');
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -65,11 +75,24 @@ const Login = () => {
                         <Link to="/signup" className="text-green-400 hover:text-green-300">Don't have an account? Sign up</Link>
                     </div>
                 </div>
+
+                {/* Developer Demo Accounts */}
+                <div className="mt-6 bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p className="text-xs text-gray-400 text-center mb-3 font-semibold uppercase">Developer Quick Test</p>
+                    <div className="grid grid-cols-3 gap-2">
+                        <button onClick={() => handleDemoLogin('public@example.com')} className="text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 py-1.5 px-2 rounded">
+                            Public
+                        </button>
+                        <button onClick={() => handleDemoLogin('officer@example.com')} className="text-xs bg-indigo-900 hover:bg-indigo-800 text-indigo-200 py-1.5 px-2 rounded">
+                            Officer
+                        </button>
+                        <button onClick={() => handleDemoLogin('admin@example.com')} className="text-xs bg-red-900 hover:bg-red-800 text-red-200 py-1.5 px-2 rounded">
+                            Admin
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
 };
 export default Login;
-
-
-
