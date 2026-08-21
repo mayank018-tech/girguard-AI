@@ -1,4 +1,4 @@
-"""LivestockLoss model."""
+﻿"""LivestockLoss model."""
 
 import datetime
 import enum
@@ -51,3 +51,4 @@ class LivestockLoss(db.Model):
             "submitted_at": self.submitted_at.isoformat() if self.submitted_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
         }
+

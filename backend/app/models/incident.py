@@ -1,4 +1,4 @@
-"""Incident model."""
+﻿"""Incident model."""
 
 import datetime
 import enum
@@ -33,6 +33,7 @@ class Incident(db.Model):
 
     id = db.Column(db.String(30), primary_key=True)
     village_id = db.Column(db.String(20), db.ForeignKey("villages.id"), nullable=False)
+    reported_by = db.Column(db.String(50), db.ForeignKey("users.id"), nullable=True)
     species = db.Column(db.String(30), nullable=False)
     severity = db.Column(db.String(20), nullable=False)
     description = db.Column(db.Text, nullable=True)
@@ -66,3 +67,4 @@ class Incident(db.Model):
             "closed_at": self.closed_at.isoformat() if self.closed_at else None,
             "created_at": self.created_at.isoformat() if self.created_at else None,
         }
+

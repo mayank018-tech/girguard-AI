@@ -1,4 +1,4 @@
-"""WildlifeSighting model."""
+﻿"""WildlifeSighting model."""
 
 import datetime
 import enum
@@ -32,7 +32,8 @@ class WildlifeSighting(db.Model):
     sighting_date = db.Column(db.Date, nullable=False)
     sighting_time = db.Column(db.String(10), nullable=True)
     village_id = db.Column(db.String(20), db.ForeignKey("villages.id"), nullable=True)
-    # Generalised coordinates — never expose exact wildlife locations publicly
+    user_id = db.Column(db.String(50), db.ForeignKey("users.id"), nullable=True)
+    # Generalised coordinates â€” never expose exact wildlife locations publicly
     latitude = db.Column(db.Float, nullable=True)
     longitude = db.Column(db.Float, nullable=True)
     source = db.Column(db.String(20), nullable=False, default=SourceEnum.CITIZEN.value)
@@ -63,3 +64,4 @@ class WildlifeSighting(db.Model):
             d["lat"] = self.latitude
             d["lng"] = self.longitude
         return d
+
