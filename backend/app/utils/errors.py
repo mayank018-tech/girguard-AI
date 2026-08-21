@@ -1,4 +1,4 @@
-﻿from flask import jsonify
+﻿from flask import jsonify, request
 import traceback
 
 def register_error_handlers(app):
@@ -8,10 +8,14 @@ def register_error_handlers(app):
 
     @app.errorhandler(404)
     def not_found(e):
+        if request.method == 'OPTIONS':
+            return '', 200
         return jsonify({"success": False, "error": {"code": "NOT_FOUND", "message": "The requested resource was not found."}}), 404
 
     @app.errorhandler(405)
     def method_not_allowed(e):
+        if request.method == 'OPTIONS':
+            return '', 200
         return jsonify({"success": False, "error": {"code": "METHOD_NOT_ALLOWED", "message": "Method not allowed."}}), 405
 
     @app.errorhandler(422)
