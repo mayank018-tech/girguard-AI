@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Users, Shield, ShieldOff, Search, MoreVertical } from 'lucide-react';
 
@@ -81,7 +81,11 @@ const UserManagement = () => {
                                         <td className="py-4 font-medium">{u.name}</td>
                                         <td className="py-4 text-gray-400">{u.email}</td>
                                         <td className="py-4">
-                                            <span className={px-2.5 py-1 rounded-full text-xs font-bold border }>
+                                            <span className={`px-2.5 py-1 rounded-full text-xs font-bold border ${
+                                                u.role === 'ADMIN' ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' :
+                                                u.role === 'DEPARTMENT' ? 'bg-green-500/20 text-green-400 border-green-500/30' :
+                                                'bg-gray-500/20 text-gray-400 border-gray-500/30'
+                                            }`}>
                                                 {u.role}
                                             </span>
                                         </td>
