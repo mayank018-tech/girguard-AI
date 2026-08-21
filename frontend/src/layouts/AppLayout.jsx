@@ -1,34 +1,46 @@
-﻿import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+﻿import { NavLink, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useAuth } from '../context/AuthContext';
 import { LogOut } from 'lucide-react';
 
-const NAV_ITEMS = [
-  { path: '/dashboard',       label: 'Overview',        icon: '????' },
-  { path: '/alerts',          label: 'Live Alerts',     icon: '????' },
-  { path: '/report-sighting', label: 'Report Sighting', icon: '????' },
-  { path: '/livestock-loss',  label: 'Livestock Loss',  icon: '????' },
-  { path: '/tourist',         label: 'Tourist Safety',  icon: '???????' },
-  { path: '/forest-command',  label: 'Forest Command',  icon: '???????' },
-  { path: '/incidents',       label: 'Incidents',       icon: '??????' },
-  { path: '/hotspots',        label: 'Hotspots',        icon: '????' },
-  { path: '/ai-assistant',    label: 'AI Assistant',    icon: '????' },
+const ADMIN_NAV = [
+    { path: '/admin',       label: 'System Dashboard',  icon: '📊' },
+    { path: '/admin/users', label: 'User Management',   icon: '👥' }
 ];
 
-export default function AppLayout({ children }) {
+const DEPT_NAV = [
+    { path: '/dashboard',               label: 'Command Center',  icon: '📡' },
+    { path: '/dashboard/verification',  label: 'Verify Reports',  icon: '✅' },
+    { path: '/alerts',                  label: 'Live Alerts',     icon: '⚠️' },
+    { path: '/incidents',               label: 'Incidents',       icon: '📝' },
+    { path: '/hotspots',                label: 'Risk Hotspots',   icon: '🔥' },
+    { path: '/forest-command',          label: 'Forest Command',  icon: '🌲' },
+    { path: '/ai-assistant',            label: 'AI Assistant',    icon: '🤖' }
+];
+
+const PUBLIC_NAV = [
+    { path: '/public',          label: 'My Dashboard',    icon: '🏠' },
+    { path: '/report-sighting', label: 'Report Sighting', icon: '🐾' },
+    { path: '/livestock-loss',  label: 'Livestock Loss',  icon: '🐄' },
+    { path: '/tourist',         label: 'Tourist Safety',  icon: '🎒' }
+];
+
+export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const isLanding = location.pathname === '/';
 
-  if (isLanding) return <>{children}</>;
+  if (isLanding) return <Outlet />;
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
+
+  const navToUse = user?.role === 'ADMIN' ? ADMIN_NAV : user?.role === 'DEPARTMENT' ? DEPT_NAV : PUBLIC_NAV;
 
   return (
     <div className="flex h-screen bg-gray-950 text-gray-100 overflow-hidden">
@@ -48,7 +60,7 @@ export default function AppLayout({ children }) {
         {/* Logo */}
         <div className="px-4 py-5 border-b border-gray-800">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-green-800 rounded-lg flex items-center justify-center text-lg flex-shrink-0">????</div>
+            <div className="w-9 h-9 bg-green-800 rounded-lg flex items-center justify-center text-lg flex-shrink-0">🦁</div>
             <div>
               <div className="font-bold text-white text-base leading-tight">GirGuard AI</div>
               <div className="text-xs text-gray-400 leading-tight">Wildlife Command Center</div>
@@ -58,7 +70,7 @@ export default function AppLayout({ children }) {
 
         {/* Nav */}
         <nav className="flex-1 py-4 px-2 overflow-y-auto space-y-0.5">
-          { (user?.role === 'ADMIN' ? ADMIN_NAV : user?.role === 'DEPARTMENT' ? DEPT_NAV : PUBLIC_NAV).map(item => (
+          {navToUse.map(item => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -110,11 +122,9 @@ export default function AppLayout({ children }) {
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto bg-gray-950 p-4 lg:p-6">
-          {children}
+          <Outlet />
         </main>
       </div>
     </div>
   );
 }
-
-
