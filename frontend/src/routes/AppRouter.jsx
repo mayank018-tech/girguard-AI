@@ -2,6 +2,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AppLayout from '../layouts/AppLayout.jsx';
+import ProfilePage from '../pages/Profile.jsx';
 
 import LandingPage from '../pages/LandingPage.jsx';
 import VerificationDesk from '../pages/department/VerificationDesk.jsx';
@@ -42,11 +43,12 @@ const AppRouter = () => {
 
     return (
         <Routes>
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Login />} />
             <Route path="/signup" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Signup />} />
             
             <Route path="/" element={<AppLayout />}>
-                <Route index element={<LandingPage />} />
+                
                 
                 {/* ADMIN ROUTES */}
                 <Route path="admin" element={<ProtectedRoute requiredRole="ADMIN"><AdminDashboard /></ProtectedRoute>} />
@@ -73,4 +75,6 @@ const AppRouter = () => {
     );
 };
 export default AppRouter;
+
+
 
