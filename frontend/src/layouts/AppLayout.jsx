@@ -5,11 +5,13 @@ import { useAuth } from '../context/AuthContext';
 import { LogOut } from 'lucide-react';
 
 const ADMIN_NAV = [
+    { path: '/profile',     label: 'My Profile',        icon: '👤' },
     { path: '/admin',       label: 'System Dashboard',  icon: '📊' },
     { path: '/admin/users', label: 'User Management',   icon: '👥' }
 ];
 
 const DEPT_NAV = [
+    { path: '/profile',     label: 'My Profile',        icon: '👤' },
     { path: '/dashboard',               label: 'Command Center',  icon: '📡' },
     { path: '/dashboard/verification',  label: 'Verify Reports',  icon: '✅' },
     { path: '/alerts',                  label: 'Live Alerts',     icon: '⚠️' },
@@ -20,6 +22,7 @@ const DEPT_NAV = [
 ];
 
 const PUBLIC_NAV = [
+    { path: '/profile',     label: 'My Profile',        icon: '👤' },
     { path: '/public',          label: 'My Dashboard',    icon: '🏠' },
     { path: '/report-sighting', label: 'Report Sighting', icon: '🐾' },
     { path: '/livestock-loss',  label: 'Livestock Loss',  icon: '🐄' },
@@ -128,3 +131,4 @@ export default function AppLayout() {
     </div>
   );
 }
+
