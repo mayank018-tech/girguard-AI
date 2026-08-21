@@ -1,0 +1,21 @@
+id,village_id,species,risk_score,risk_level,confidence,prediction_window,reason,top_factors_json,model_version,created_at
+RP-6c0574d3,VLG-1007,Leopard,43,ELEVATED,70,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-ef5bf2b8,VLG-1014,Asiatic Lion,75,CRITICAL,84,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-790dd699,VLG-1010,Leopard,66,MODERATE,76,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-864a61eb,VLG-1007,Leopard,75,LOW,70,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-f64281e1,VLG-1012,Leopard,34,LOW,71,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-5a72748a,VLG-1011,Leopard,86,MODERATE,83,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-eadbbd45,VLG-1012,Leopard,83,LOW,73,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-8e324235,VLG-1001,Asiatic Lion,29,HIGH,84,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-08daa4f2,VLG-1011,Leopard,39,LOW,88,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-c352f869,VLG-1003,Leopard,89,ELEVATED,87,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-efcc31fc,VLG-1007,Leopard,69,ELEVATED,82,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-72595f12,VLG-1000,Asiatic Lion,25,HIGH,71,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-59e9b312,VLG-1006,Asiatic Lion,46,CRITICAL,93,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-50a34f88,VLG-1005,Leopard,21,ELEVATED,95,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-860db110,VLG-1007,Leopard,33,ELEVATED,84,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-edb5adfe,VLG-1005,Leopard,75,MODERATE,83,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-85bbea2a,VLG-1014,Leopard,27,MODERATE,81,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-addb6d3c,VLG-1009,Leopard,26,MODERATE,75,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-7488d611,VLG-1005,Leopard,73,ELEVATED,72,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143
+RP-47b34de9,VLG-1013,Asiatic Lion,24,HIGH,85,24h,Recent movement patterns and dry season water scarcity.,"[""Water proximity"", ""Livestock count""]",rf-v1,2026-08-20T23:51:03.279143

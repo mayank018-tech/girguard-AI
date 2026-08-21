@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAlerts, getRiskPredictions, getIncidents, getSightings, getVillages, getResponseTeams, getHotspots } from '../services/api/index.js';
 import { StatCard, DemoDataBanner, SectionHeader, LoadingSpinner } from '../components/UI.jsx';
@@ -102,8 +102,8 @@ export default function DashboardPage() {
                         </div>
                         <div className="w-20 bg-gray-700 rounded-full h-1.5">
                           <div
-                            className={h-1.5 rounded-full }
-                            style={{ width: ${r.riskScore}% }}
+                            className={`h-1.5 rounded-full ${r.riskScore >= 81 ? 'bg-red-400' : r.riskScore >= 61 ? 'bg-orange-400' : r.riskScore >= 41 ? 'bg-yellow-400' : 'bg-green-400'}`}
+                            style={{ width: `${r.riskScore}%` }}
                           />
                         </div>
                       </div>
@@ -199,3 +199,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

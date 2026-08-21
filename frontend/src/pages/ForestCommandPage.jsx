@@ -94,7 +94,7 @@ export default function ForestCommandPage() {
         {/* Map */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <SectionHeader title="GIS Situational Map" subtitle="Real-time positions ... demo coordinates" />
-          {!villages || !sightings || !hotspots || !teams ? <div className="h-[400px] flex items-center justify-center"><LoadingSpinner /></div> : <GirMap villages={villages} sightings={sightings} hotspots={hotspots} teams={teams} height={320} />
+          {!villages || !sightings || !hotspots || !teams ? <div className="h-[400px] flex items-center justify-center"><LoadingSpinner /></div> : <GirMap villages={villages} sightings={sightings} hotspots={hotspots} teams={teams} height={320} /> }
         </div>
 
         {/* AI Copilot */}
@@ -197,5 +197,7 @@ export default function ForestCommandPage() {
     </div>
   );
 }
+
+
 
 

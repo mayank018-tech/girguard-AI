@@ -36,19 +36,19 @@ export default function TouristSafetyPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">Tourist Safety</h1>
-          <p className="text-sm text-gray-400 mt-1">Gir Forest National Park & Girnar Region ??? Visitor Safety Dashboard</p>
+          <p className="text-sm text-gray-400 mt-1">Gir Forest National Park & Girnar Region ... Visitor Safety Dashboard</p>
         </div>
         <button
           onClick={() => setHelpClicked(true)}
           className="bg-red-700 hover:bg-red-600 text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg transition-colors flex items-center gap-2"
         >
-          ???? I NEED HELP
+          ... I NEED HELP
         </button>
       </div>
 
       {helpClicked && (
         <div className="bg-red-950/70 border border-red-600 rounded-xl p-5 space-y-3">
-          <h3 className="text-red-300 font-bold text-lg">???? Emergency Assistance</h3>
+          <h3 className="text-red-300 font-bold text-lg">... Emergency Assistance</h3>
           <p className="text-sm text-red-200">Stay calm. Do not run. Back away slowly from any wildlife.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="bg-red-900/40 rounded-lg p-3">
@@ -60,7 +60,7 @@ export default function TouristSafetyPage() {
               <div className="text-xl font-bold text-white">100</div>
             </div>
           </div>
-          <p className="text-xs text-red-400">??? DEMO: Emergency backend not yet connected. In a real emergency call 1926 or 100 directly.</p>
+          <p className="text-xs text-red-400">... DEMO: Emergency backend not yet connected. In a real emergency call 1926 or 100 directly.</p>
           <button onClick={() => setHelpClicked(false)} className="text-xs text-red-400 hover:text-red-300 underline">Dismiss</button>
         </div>
       )}
@@ -83,7 +83,7 @@ export default function TouristSafetyPage() {
             <div><span className="text-gray-500">Sunset:</span> <span className="text-white">{mockWeather.sunset}</span></div>
           </div>
           <div className="mt-3 bg-blue-950/40 border border-blue-800/40 rounded-lg p-2 text-xs text-blue-300">
-            ???? {mockWeather.advisory}
+            ... {mockWeather.advisory}
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@ export default function TouristSafetyPage() {
         <div className="space-y-2">
           {mockOfficialWarnings.map(w => (
             <div key={w.id} className={`rounded-lg p-3 border text-sm flex items-start gap-3 ${w.level === 'HIGH' ? 'bg-red-950/40 border-red-700' : w.level === 'CAUTION' ? 'bg-yellow-950/40 border-yellow-700' : 'bg-blue-950/40 border-blue-800'}`}>
-              <span>{w.level === 'HIGH' ? '????' : w.level === 'CAUTION' ? '????' : '??????'}</span>
+              <span>{w.level === 'HIGH' ? '...' : w.level === 'CAUTION' ? '...' : '...'}</span>
               <div>
                 <span className={`font-semibold ${w.level === 'HIGH' ? 'text-red-300' : w.level === 'CAUTION' ? 'text-yellow-300' : 'text-blue-300'}`}>{w.level}: </span>
                 <span className="text-gray-300">{w.message}</span>
@@ -143,7 +143,7 @@ export default function TouristSafetyPage() {
 
       {/* Safety Guidelines */}
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <div className="text-sm font-semibold text-white mb-3">??????? Safety Guidelines for Visitors</div>
+        <div className="text-sm font-semibold text-white mb-3">... Safety Guidelines for Visitors</div>
         <ol className="space-y-2">
           {mockSafetyGuidelines.map((g, i) => (
             <li key={i} className="flex items-start gap-3 text-sm text-gray-300">

@@ -66,7 +66,7 @@ export default function LivestockLossPage() {
 
       {result && (
         <div className="bg-green-950/50 border border-green-700 rounded-xl p-4 flex items-start gap-3">
-          <span className="text-2xl">???</span>
+          <span className="text-2xl">...</span>
           <div>
             <p className="font-semibold text-green-300">Claim Submitted</p>
             <p className="text-sm text-gray-400 mt-1">Claim ID: <span className="font-mono text-white">{result.id}</span> ?? Status: <span className="text-yellow-300">SUBMITTED</span></p>
@@ -93,7 +93,7 @@ export default function LivestockLossPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <Field label="Village *" error={errors.village}>
               <select value={form.village} onChange={e => setForm(f => ({...f, village: e.target.value}))} className={inputCls}>
-                <option value="">Select village???</option>
+                <option value="">Select village...</option>
                 {VILLAGE_OPTS.map(v => <option key={v}>{v}</option>)}
               </select>
             </Field>
@@ -102,7 +102,7 @@ export default function LivestockLossPage() {
             </Field>
             <Field label="Livestock Type *" error={errors.livestockType}>
               <select value={form.livestockType} onChange={e => setForm(f => ({...f, livestockType: e.target.value}))} className={inputCls}>
-                <option value="">Select type???</option>
+                <option value="">Select type...</option>
                 {LIVESTOCK_TYPES.map(t => <option key={t}>{t}</option>)}
               </select>
             </Field>
@@ -111,28 +111,28 @@ export default function LivestockLossPage() {
             </Field>
             <Field label="Suspected Animal">
               <select value={form.species} onChange={e => setForm(f => ({...f, species: e.target.value}))} className={inputCls}>
-                <option value="">Unknown / Select???</option>
+                <option value="">Unknown / Select...</option>
                 {SPECIES_OPTS.map(s => <option key={s}>{s}</option>)}
               </select>
             </Field>
             <Field label="Approximate Location">
-              <input type="text" placeholder="Near water source, field number???" value={form.location} onChange={e => setForm(f => ({...f, location: e.target.value}))} className={inputCls} />
+              <input type="text" placeholder="Near water source, field number..." value={form.location} onChange={e => setForm(f => ({...f, location: e.target.value}))} className={inputCls} />
             </Field>
           </div>
           <Field label="Description *" error={errors.description}>
-            <textarea rows={3} placeholder="Describe the incident, when and how it was discovered???" value={form.description} onChange={e => setForm(f => ({...f, description: e.target.value}))} className={inputCls} />
+            <textarea rows={3} placeholder="Describe the incident, when and how it was discovered..." value={form.description} onChange={e => setForm(f => ({...f, description: e.target.value}))} className={inputCls} />
           </Field>
           <div>
             <label className="block text-xs font-medium text-gray-400 mb-1">Evidence Upload (Optional)</label>
             <div className="bg-gray-900 border border-dashed border-gray-600 rounded-lg px-4 py-5 text-center text-xs text-gray-500">
-              ???? Evidence upload available in Phase 2 (IBM Cloud Object Storage)
+              ... Evidence upload available in Phase 2 (IBM Cloud Object Storage)
             </div>
           </div>
           <div className="bg-amber-950/40 border border-amber-700/40 rounded-lg px-3 py-2 text-xs text-amber-400">
-            ??? DEMO FORM ??? No actual government submission. This is a frontend prototype.
+            ... DEMO FORM ... No actual government submission. This is a frontend prototype.
           </div>
           <button type="submit" disabled={submitting} className="w-full bg-green-700 hover:bg-green-600 disabled:bg-gray-700 disabled:text-gray-500 text-white font-semibold py-3 rounded-lg text-sm transition-colors">
-            {submitting ? 'Submitting???' : 'Submit Livestock Loss Claim'}
+            {submitting ? 'Submitting...' : 'Submit Livestock Loss Claim'}
           </button>
         </form>
       )}

@@ -1,0 +1,11 @@
+id,incident_type,description,latitude,longitude,severity,status,created_at,resolved_at
+TI-c5046707,Close Encounter,Tourists found off-track attempting to photograph lions.,21.11509905571996,70.81214168317976,LOW,RESOLVED,2026-08-01T23:53:05.893291,
+TI-dff9b629,Harassment of Wildlife,Tourists found off-track attempting to photograph lions.,21.026008178413136,70.7383327161031,HIGH,INVESTIGATING,2026-08-08T23:53:05.893291,
+TI-8661d2cc,Close Encounter,Tourists found off-track attempting to photograph lions.,21.060218263998493,70.73035630495178,MODERATE,REPORTED,2026-08-03T23:53:05.893291,
+TI-9dfa8404,Illegal Safari,Tourists found off-track attempting to photograph lions.,21.197043769315265,70.73394129196295,HIGH,INVESTIGATING,2026-08-06T23:53:05.893291,
+TI-7e3983ef,Harassment of Wildlife,Tourists found off-track attempting to photograph lions.,21.08142783868304,70.76868370582082,LOW,INVESTIGATING,2026-07-21T23:53:05.893291,
+TI-269bc7ad,Illegal Safari,Tourists found off-track attempting to photograph lions.,21.116313717266813,70.72606380002483,HIGH,RESOLVED,2026-08-01T23:53:05.893291,
+TI-a1a9794c,Close Encounter,Tourists found off-track attempting to photograph lions.,21.194012918703354,70.83378665436177,HIGH,REPORTED,2026-07-21T23:53:05.893291,
+TI-67254120,Harassment of Wildlife,Tourists found off-track attempting to photograph lions.,21.062900717540096,70.75791946822564,LOW,INVESTIGATING,2026-07-24T23:53:05.893291,
+TI-0a5af0b4,Illegal Safari,Tourists found off-track attempting to photograph lions.,21.192483521854562,70.80510921424518,HIGH,INVESTIGATING,2026-08-01T23:53:05.893291,
+TI-3a812ff4,Illegal Safari,Tourists found off-track attempting to photograph lions.,21.000006040714187,70.78086041426847,MODERATE,RESOLVED,2026-07-27T23:53:05.893291,

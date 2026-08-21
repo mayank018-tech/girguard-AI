@@ -23,13 +23,13 @@ export function SectionHeader({ title, subtitle, action }) {
 export function DemoDataBanner() {
   return (
     <div className="flex items-center gap-2 bg-amber-950/50 border border-amber-700/50 rounded-lg px-3 py-2 text-xs text-amber-300 mb-4">
-      <span className="font-bold">??? DEMO DATA</span>
+      <span className="font-bold">... DEMO DATA</span>
       <span className="text-amber-400/80">All data shown is synthetic and for demonstration only. Not real wildlife sightings.</span>
     </div>
   );
 }
 
-export function LoadingSpinner({ text = 'Loading???' }) {
+export function LoadingSpinner({ text = 'Loading...' }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 gap-3">
       <div className="w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
@@ -52,7 +52,7 @@ export function GraniteComingSoon() {
   return (
     <div className="bg-indigo-950/40 border border-indigo-700/50 rounded-lg px-3 py-2 text-xs text-indigo-300 flex items-center gap-2">
       <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-      <span><strong>IBM Granite Integration</strong> ??? Coming in next phase</span>
+      <span><strong>IBM Granite Integration</strong> ... Coming in next phase</span>
     </div>
   );
 }

@@ -1,0 +1,16 @@
+id,village_id,species,severity,description,incident_type,detected_at,verified_at,assigned_team_id,status,resolution_notes,closed_at,created_at
+INC-7eeeccaa,VLG-1005,Leopard,LOW,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-100,OPEN,,,2026-08-20T23:51:03.286419
+INC-7936b06b,VLG-1009,Leopard,HIGH,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-102,RESOLVED,,,2026-08-20T23:51:03.286419
+INC-b519d417,VLG-1005,Asiatic Lion,HIGH,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-100,OPEN,,,2026-08-20T23:51:03.286419
+INC-a6905858,VLG-1012,Asiatic Lion,CRITICAL,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-104,RESOLVED,,,2026-08-20T23:51:03.286419
+INC-d5328575,VLG-1003,Leopard,HIGH,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-102,RESOLVED,,,2026-08-20T23:51:03.286419
+INC-d625b160,VLG-1000,Leopard,MODERATE,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-103,OPEN,,,2026-08-20T23:51:03.286419
+INC-c8ee191d,VLG-1003,Leopard,LOW,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-100,OPEN,,,2026-08-20T23:51:03.286419
+INC-fdfeb142,VLG-1007,Leopard,LOW,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-100,RESOLVED,,,2026-08-20T23:51:03.286419
+INC-b7d7a322,VLG-1000,Leopard,HIGH,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-101,OPEN,,,2026-08-20T23:51:03.286419
+INC-abbb0be5,VLG-1008,Leopard,MODERATE,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-103,RESOLVED,,,2026-08-20T23:51:03.286419
+INC-369c85dc,VLG-1000,Leopard,LOW,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-102,OPEN,,,2026-08-20T23:51:03.286419
+INC-f3a1443c,VLG-1009,Leopard,LOW,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-104,OPEN,,,2026-08-20T23:51:03.286419
+INC-a49d147d,VLG-1004,Asiatic Lion,CRITICAL,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-102,OPEN,,,2026-08-20T23:51:03.286419
+INC-3dd734b4,VLG-1001,Leopard,LOW,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-103,OPEN,,,2026-08-20T23:51:03.286419
+INC-0cff0146,VLG-1013,Asiatic Lion,HIGH,Livestock predation reported.,Livestock Predation,2026-08-20T23:51:03.286419,2026-08-20T23:51:03.286419,RT-100,OPEN,,,2026-08-20T23:51:03.286419
