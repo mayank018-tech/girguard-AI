@@ -1,11 +1,11 @@
-/**
- * GirGuard AI — Service Abstraction Layer
+﻿/**
+ * GirGuard AI â€” Service Abstraction Layer
  *
  * STATE: Connected to Flask REST API when VITE_API_BASE_URL is set.
  *       Falls back to mock data when no backend URL is configured.
  *
  * Pattern:
- *   React UI → apiService.getAlerts() → Flask API / mock fallback
+ *   React UI â†’ apiService.getAlerts() â†’ Flask API / mock fallback
  *
  * SECURITY: Never import IBM API keys here. All credentials stay server-side.
  */
@@ -29,7 +29,7 @@ const delay = (ms = 300) => new Promise(res => setTimeout(res, ms));
 let sightingCounter = 1010;
 let lossCounter = 5010;
 
-// ── HTTP helper ───────────────────────────────────────────────────────────────
+// â”€â”€ HTTP helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function apiFetch(path, options = {}) {
   const url = `${API_BASE_URL}${path}`;
@@ -44,7 +44,7 @@ async function apiFetch(path, options = {}) {
   return json;
 }
 
-// ── Villages ─────────────────────────────────────────────────────────────────
+// â”€â”€ Villages â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function getVillages() {
   if (USE_MOCK) {
@@ -55,7 +55,7 @@ export async function getVillages() {
   return { data: json.data, source: 'api' };
 }
 
-// ── Wildlife Sightings ────────────────────────────────────────────────────────
+// â”€â”€ Wildlife Sightings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function getSightings() {
   if (USE_MOCK) {
@@ -92,7 +92,7 @@ export async function submitSighting(formData) {
   };
 }
 
-// ── Alerts ────────────────────────────────────────────────────────────────────
+// â”€â”€ Alerts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function getAlerts() {
   if (USE_MOCK) {
@@ -103,7 +103,7 @@ export async function getAlerts() {
   return { data: json.data, source: 'api' };
 }
 
-// ── Risk Predictions ──────────────────────────────────────────────────────────
+// â”€â”€ Risk Predictions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function getRiskPredictions() {
   if (USE_MOCK) {
@@ -129,7 +129,7 @@ export async function predictRisk(villageId, species = null) {
   return { data: json.data, source: 'api' };
 }
 
-// ── Incidents ─────────────────────────────────────────────────────────────────
+// â”€â”€ Incidents â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function getIncidents() {
   if (USE_MOCK) {
@@ -140,7 +140,7 @@ export async function getIncidents() {
   return { data: json.data, source: 'api' };
 }
 
-// ── Response Teams ────────────────────────────────────────────────────────────
+// â”€â”€ Response Teams â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function getResponseTeams() {
   if (USE_MOCK) {
@@ -151,8 +151,8 @@ export async function getResponseTeams() {
   return { data: json.data, source: 'api' };
 }
 
-// ── Hotspots ──────────────────────────────────────────────────────────────────
-// Hotspots are derived/analytics data — served from mock in both modes
+// â”€â”€ Hotspots â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Hotspots are derived/analytics data â€” served from mock in both modes
 // (no dedicated backend endpoint required; computed by ML in Task 3)
 
 export async function getHotspots() {
@@ -160,15 +160,15 @@ export async function getHotspots() {
   return { data: mockHotspots, source: 'mock' };
 }
 
-// ── Tourist Zones ─────────────────────────────────────────────────────────────
-// Tourist zones are static config data — served from mock in both modes
+// â”€â”€ Tourist Zones â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Tourist zones are static config data â€” served from mock in both modes
 
 export async function getTouristZones() {
   await delay();
   return { data: mockTouristZones, source: 'mock' };
 }
 
-// ── Livestock Losses ──────────────────────────────────────────────────────────
+// â”€â”€ Livestock Losses â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function getLivestockLosses() {
   if (USE_MOCK) {
@@ -204,3 +204,4 @@ export async function submitLivestockLoss(formData) {
     source: 'api',
   };
 }
+
