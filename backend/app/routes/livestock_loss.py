@@ -8,6 +8,7 @@ from ..models.livestock_loss import LivestockLoss, LossStatusEnum
 from ..models.village import Village
 from ..utils.responses import success, created, not_found, validation_error, paginate
 from ..utils.validators import parse_int, parse_date, require_fields
+from ..utils.auth import require_auth
 
 bp = Blueprint("livestock_loss", __name__, url_prefix="/api/v1/livestock-loss")
 
