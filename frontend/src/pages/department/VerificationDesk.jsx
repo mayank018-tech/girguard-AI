@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { CheckCircle, XCircle, Clock, MapPin, Search } from 'lucide-react';
+import { CheckCircle, XCircle, Clock, MapPin, Search, Camera } from 'lucide-react';
 
 const VerificationDesk = () => {
     const { apiCall } = useAuth();
@@ -103,3 +103,4 @@ const VerificationDesk = () => {
     );
 };
 export default VerificationDesk;
+
