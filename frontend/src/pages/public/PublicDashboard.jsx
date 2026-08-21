@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { ShieldAlert, LogOut, Camera, AlertTriangle } from 'lucide-react';
 
 const PublicDashboard = () => {
@@ -31,7 +32,7 @@ const PublicDashboard = () => {
                 </header>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-500 cursor-pointer transition-colors" onClick={() => alert('Report Sighting flow coming soon!')}>
+                    <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-500 cursor-pointer transition-colors" onClick={() => navigate('/public/report-sighting')}>
                         <Camera className="h-10 w-10 text-green-400 mb-4" />
                         <h3 className="text-xl font-bold mb-2">Report Sighting</h3>
                         <p className="text-gray-400">Did you spot a lion or leopard? Let the department know safely.</p>
@@ -65,3 +66,4 @@ const PublicDashboard = () => {
     );
 };
 export default PublicDashboard;
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AppLayout from '../layouts/AppLayout.jsx';
@@ -17,6 +17,7 @@ import AIAssistantPage from '../pages/AIAssistantPage.jsx';
 import Login from '../pages/auth/Login';
 import Signup from '../pages/auth/Signup';
 import PublicDashboard from '../pages/public/PublicDashboard';
+import ReportSightingPublic from '../pages/public/ReportSighting';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
     const { user, loading } = useAuth();
@@ -40,6 +41,11 @@ const AppRouter = () => {
             
             {/* Public Portal */}
             <Route path="/public" element={
+                <ProtectedRoute requiredRole="PUBLIC">
+                    <PublicDashboard />
+                </ProtectedRoute>
+            } />
+            <Route path="/public/report-sighting" element={
                 <ProtectedRoute requiredRole="PUBLIC">
                     <PublicDashboard />
                 </ProtectedRoute>
@@ -68,3 +74,4 @@ const AppRouter = () => {
     );
 };
 export default AppRouter;
+
