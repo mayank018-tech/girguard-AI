@@ -11,10 +11,10 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('token');
         const headers = {
             'Content-Type': 'application/json',
-            ...(token ? { 'Authorization': \Bearer \\ } : {}),
+            ...(token ? { 'Authorization': 'Bearer ' + token } : {}),
             ...options.headers
         };
-        const res = await fetch(\\\\, { ...options, headers });
+        const res = await fetch(API_BASE_URL + endpoint, { ...options, headers });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error?.message || 'API Error');
         return data;
@@ -22,36 +22,37 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
-            apiCall('/auth/me')
-                .then(res => {
-                    setUser(res.data);
-                })
-                .catch(() => {
-                    localStorage.removeItem('token');
-                })
-                .finally(() => setLoading(false));
-        } else {
-            setLoading(false);
+        const role = localStorage.getItem('role');
+        if (token && role) {
+            setUser({ role });
         }
+        setLoading(false);
     }, []);
 
     const login = async (email, password) => {
-        const res = await apiCall('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
-        localStorage.setItem('token', res.data.token);
-        setUser(res.data.user);
-        return res.data.user;
+        const data = await apiCall('/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password })
+        });
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('role', data.user.role);
+        setUser(data.user);
     };
 
-    const signup = async (name, email, password, role_code) => {
-        const res = await apiCall('/auth/signup', { method: 'POST', body: JSON.stringify({ name, email, password, role_code }) });
-        return res.data;
+    const signup = async (name, email, password, roleCode) => {
+        const data = await apiCall('/auth/signup', {
+            method: 'POST',
+            body: JSON.stringify({ name, email, password, role_code: roleCode })
+        });
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('role', data.user.role);
+        setUser(data.user);
     };
 
     const logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('role');
         setUser(null);
-        window.location.href = '/login';
     };
 
     return (
