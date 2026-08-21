@@ -5,6 +5,7 @@ import { ShieldAlert, LogOut, Camera, AlertTriangle } from 'lucide-react';
 
 const PublicDashboard = () => {
     const { user, logout, apiCall } = useAuth();
+    const navigate = useNavigate();
     const [alerts, setAlerts] = useState([]);
     
     useEffect(() => {
@@ -66,4 +67,5 @@ const PublicDashboard = () => {
     );
 };
 export default PublicDashboard;
+
 
