@@ -2,31 +2,31 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useAuth } from '../context/AuthContext';
-import { LogOut } from 'lucide-react';
+import { LogOut, User, LayoutDashboard, ShieldCheck, Bell, AlertTriangle, Map, Crosshair, Users, Activity, Eye, ShieldAlert, Cpu } from 'lucide-react';
 
 const ADMIN_NAV = [
-    { path: '/profile',     label: 'My Profile',        icon: '👤' },
-    { path: '/admin',       label: 'System Dashboard',  icon: '📊' },
-    { path: '/admin/users', label: 'User Management',   icon: '👥' }
+    { path: '/profile',     label: 'My Profile',        icon: User },
+    { path: '/admin',       label: 'System Dashboard',  icon: LayoutDashboard },
+    { path: '/admin/users', label: 'User Management',   icon: Users }
 ];
 
 const DEPT_NAV = [
-    { path: '/profile',     label: 'My Profile',        icon: '👤' },
-    { path: '/dashboard',               label: 'Command Center',  icon: '📡' },
-    { path: '/dashboard/verification',  label: 'Verify Reports',  icon: '✅' },
-    { path: '/alerts',                  label: 'Live Alerts',     icon: '⚠️' },
-    { path: '/incidents',               label: 'Incidents',       icon: '📝' },
-    { path: '/hotspots',                label: 'Risk Hotspots',   icon: '🔥' },
-    { path: '/forest-command',          label: 'Forest Command',  icon: '🌲' },
-    { path: '/ai-assistant',            label: 'AI Assistant',    icon: '🤖' }
+    { path: '/profile',                 label: 'My Profile',      icon: User },
+    { path: '/dashboard',               label: 'Command Center',  icon: LayoutDashboard },
+    { path: '/dashboard/verification',  label: 'Verify Reports',  icon: ShieldCheck },
+    { path: '/alerts',                  label: 'Live Alerts',     icon: Bell },
+    { path: '/incidents',               label: 'Incidents',       icon: AlertTriangle },
+    { path: '/hotspots',                label: 'Risk Hotspots',   icon: Map },
+    { path: '/forest-command',          label: 'Forest Command',  icon: Crosshair },
+    { path: '/ai-assistant',            label: 'AI Assistant',    icon: Cpu }
 ];
 
 const PUBLIC_NAV = [
-    { path: '/profile',     label: 'My Profile',        icon: '👤' },
-    { path: '/public',          label: 'My Dashboard',    icon: '🏠' },
-    { path: '/report-sighting', label: 'Report Sighting', icon: '🐾' },
-    { path: '/livestock-loss',  label: 'Livestock Loss',  icon: '🐄' },
-    { path: '/tourist',         label: 'Tourist Safety',  icon: '🎒' }
+    { path: '/profile',         label: 'My Profile',        icon: User },
+    { path: '/public',          label: 'My Dashboard',      icon: LayoutDashboard },
+    { path: '/report-sighting', label: 'Report Sighting',   icon: Eye },
+    { path: '/livestock-loss',  label: 'Livestock Loss',    icon: AlertTriangle },
+    { path: '/tourist',         label: 'Tourist Safety',    icon: ShieldAlert }
 ];
 
 export default function AppLayout() {
@@ -34,9 +34,6 @@ export default function AppLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const isLanding = location.pathname === '/';
-
-  if (isLanding) return <Outlet />;
 
   const handleLogout = () => {
     logout();
@@ -60,75 +57,75 @@ export default function AppLayout() {
         'fixed lg:static inset-y-0 left-0 z-30 w-64 bg-gray-900 border-r border-gray-800 flex flex-col transform transition-transform duration-200 ease-in-out',
         sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       )}>
-        {/* Logo */}
-        <div className="px-4 py-5 border-b border-gray-800">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-green-800 rounded-lg flex items-center justify-center text-lg flex-shrink-0">🦁</div>
-            <div>
-              <div className="font-bold text-white text-base leading-tight">GirGuard AI</div>
-              <div className="text-xs text-gray-400 leading-tight">Wildlife Command Center</div>
-            </div>
-          </div>
+        <div className="h-16 flex items-center px-6 bg-gray-900 border-b border-gray-800">
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500">
+            GirGuard AI
+          </span>
         </div>
 
-        {/* Nav */}
-        <nav className="flex-1 py-4 px-2 overflow-y-auto space-y-0.5">
-          {navToUse.map(item => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={() => setSidebarOpen(false)}
-              className={({ isActive }) => clsx(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors',
-                isActive
-                  ? 'bg-green-900/50 text-green-300 font-medium border border-green-800/50'
-                  : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200'
-              )}
-            >
-              <span className="text-base w-5 text-center">{item.icon}</span>
-              {item.label}
-            </NavLink>
-          ))}
+        <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+          {navToUse.map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={() => setSidebarOpen(false)}
+                className={({ isActive }) => clsx(
+                  'flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                  isActive
+                    ? 'bg-green-500/10 text-green-400'
+                    : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
+                )}
+              >
+                <Icon className="w-5 h-5 mr-3 flex-shrink-0" />
+                {item.label}
+              </NavLink>
+            );
+          })}
         </nav>
 
-        {/* Footer */}
-        <div className="px-4 py-3 border-t border-gray-800 flex items-center justify-between">
-          <div className="text-xs text-gray-500">
-            <div>{user?.name || 'Forest Ranger'}</div>
-            <div className="text-green-400 font-bold">{user?.role || 'DEPARTMENT'}</div>
+        <div className="p-4 border-t border-gray-800">
+          <div className="flex items-center gap-3 mb-4 px-2">
+            <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-gray-300">
+              {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+            </div>
+            <div className="overflow-hidden">
+              <div className="text-sm font-medium text-white truncate">{user?.name || 'User'}</div>
+              <div className="text-xs text-gray-500 truncate">{user?.role}</div>
+            </div>
           </div>
-          <button onClick={handleLogout} className="p-2 bg-red-900/30 hover:bg-red-900/60 text-red-400 rounded-md transition-colors" title="Logout">
-            <LogOut size={16} />
+          <button
+            onClick={handleLogout}
+            className="flex w-full items-center px-3 py-2 text-sm font-medium text-red-400 rounded-lg hover:bg-red-400/10 transition-colors"
+          >
+            <LogOut className="w-5 h-5 mr-3" />
+            Sign Out
           </button>
         </div>
       </aside>
 
-      {/* Main area */}
+      {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Top bar */}
-        <header className="bg-gray-900 border-b border-gray-800 px-4 py-3 flex items-center gap-3 flex-shrink-0">
+        {/* Mobile header */}
+        <header className="lg:hidden h-16 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-4">
+          <span className="text-lg font-bold text-white">GirGuard</span>
           <button
-            className="lg:hidden p-1.5 rounded-md hover:bg-gray-800 text-gray-400"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 text-gray-400 hover:text-white"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <div className="flex-1 flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 text-xs text-gray-400">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              System Online
-            </div>
-          </div>
         </header>
 
-        {/* Page content */}
-        <main className="flex-1 overflow-y-auto bg-gray-950 p-4 lg:p-6">
-          <Outlet />
+        <main className="flex-1 overflow-y-auto bg-gray-950 p-4 lg:p-8">
+          <div className="max-w-7xl mx-auto">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>
   );
 }
-

@@ -43,18 +43,21 @@ const AppRouter = () => {
 
     return (
         <Routes>
-            <Route path="/" element={<LandingPage />} />
+            {/* PUBLIC/UNAUTHENTICATED */}
+            <Route path="/" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <LandingPage />} />
             <Route path="/login" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Login />} />
             <Route path="/signup" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Signup />} />
             
+            {/* AUTHENTICATED */}
             <Route path="/" element={<AppLayout />}>
-                
-                
+                {/* PROFILE - ACCESSIBLE TO ALL LOGGED IN */}
+                <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+
                 {/* ADMIN ROUTES */}
                 <Route path="admin" element={<ProtectedRoute requiredRole="ADMIN"><AdminDashboard /></ProtectedRoute>} />
                 <Route path="admin/users" element={<ProtectedRoute requiredRole="ADMIN"><UserManagement /></ProtectedRoute>} />
                 
-                {/* PUBLIC ROUTES */}
+                {/* PUBLIC USER ROUTES */}
                 <Route path="public" element={<ProtectedRoute requiredRole="PUBLIC"><PublicDashboard /></ProtectedRoute>} />
                 <Route path="report-sighting" element={<ProtectedRoute requiredRole="PUBLIC"><ReportSightingPublic /></ProtectedRoute>} />
                 <Route path="livestock-loss" element={<ProtectedRoute requiredRole="PUBLIC"><LivestockLossPage /></ProtectedRoute>} />
@@ -75,6 +78,3 @@ const AppRouter = () => {
     );
 };
 export default AppRouter;
-
-
-
