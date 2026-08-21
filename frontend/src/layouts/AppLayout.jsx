@@ -2,12 +2,13 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useAuth } from '../context/AuthContext';
-import { LogOut, User, LayoutDashboard, ShieldCheck, Bell, AlertTriangle, Map, Crosshair, Users, Activity, Eye, ShieldAlert, Cpu } from 'lucide-react';
+import { LogOut, User, LayoutDashboard, ShieldCheck, Bell, AlertTriangle, Map, Crosshair, Users, Activity, Eye, ShieldAlert, Cpu, Key } from 'lucide-react';
 
 const ADMIN_NAV = [
     { path: '/profile',     label: 'My Profile',        icon: User },
     { path: '/admin',       label: 'System Dashboard',  icon: LayoutDashboard },
-    { path: '/admin/users', label: 'User Management',   icon: Users }
+    { path: '/admin/users', label: 'User Management',   icon: Users },
+    { path: '/admin/access', label: 'Access Management', icon: Key }
 ];
 
 const DEPT_NAV = [
@@ -129,3 +130,4 @@ export default function AppLayout() {
     </div>
   );
 }
+

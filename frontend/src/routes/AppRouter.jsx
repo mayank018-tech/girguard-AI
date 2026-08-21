@@ -20,6 +20,7 @@ import Login from '../pages/auth/Login';
 import Signup from '../pages/auth/Signup';
 import PublicDashboard from '../pages/public/PublicDashboard';
 import AdminDashboard from '../pages/admin/AdminDashboard';
+import AccessManagement from '../pages/admin/AccessManagement';
 import UserManagement from '../pages/admin/UserManagement';
 import ReportSightingPublic from '../pages/public/ReportSighting';
 
@@ -55,7 +56,7 @@ const AppRouter = () => {
 
                 {/* ADMIN ROUTES */}
                 <Route path="admin" element={<ProtectedRoute requiredRole="ADMIN"><AdminDashboard /></ProtectedRoute>} />
-                <Route path="admin/users" element={<ProtectedRoute requiredRole="ADMIN"><UserManagement /></ProtectedRoute>} />
+                <Route path="admin/users" element={<ProtectedRoute requiredRole="ADMIN"><UserManagement /></ProtectedRoute>} />`n                <Route path="admin/access" element={<ProtectedRoute requiredRole="ADMIN"><AccessManagement /></ProtectedRoute>} />
                 
                 {/* PUBLIC USER ROUTES */}
                 <Route path="public" element={<ProtectedRoute requiredRole="PUBLIC"><PublicDashboard /></ProtectedRoute>} />
@@ -78,3 +79,4 @@ const AppRouter = () => {
     );
 };
 export default AppRouter;
+

@@ -9,3 +9,4 @@ def register_blueprints(app):
 
 
 from .stats import bp as stats_bp
+

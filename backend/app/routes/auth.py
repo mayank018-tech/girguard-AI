@@ -1,6 +1,7 @@
 ﻿from flask import Blueprint, request, jsonify
 import bcrypt
 from app.models.user import User
+from app.models.access_code import AccessCode
 from app.extensions import db
 import jwt
 from datetime import datetime, timedelta
@@ -14,25 +15,54 @@ def signup():
     name = data.get('name')
     email = data.get('email')
     password = data.get('password')
-    role_code = data.get('role_code', '')
+    phone = data.get('phone')
+    role = data.get('role', 'PUBLIC')
+    access_code_str = data.get('access_code')
+    department = data.get('department')
+    designation = data.get('designation')
 
-    if not all([name, email, password]):
-        return jsonify({'success': False, 'error': {'message': 'Missing fields'}}), 400
+    if not all([name, email, password, phone, role]):
+        return jsonify({'success': False, 'error': {'message': 'Missing required fields'}}), 400
+
+    if role not in ['PUBLIC', 'DEPARTMENT', 'ADMIN']:
+        return jsonify({'success': False, 'error': {'message': 'Invalid role specified'}}), 400
 
     if User.query.filter_by(email=email).first():
         return jsonify({'success': False, 'error': {'message': 'Email already exists'}}), 400
 
+    # Role Logic with Access Codes
+    if role in ['DEPARTMENT', 'ADMIN']:
+        if not access_code_str:
+            return jsonify({'success': False, 'error': {'message': 'Invalid or expired authorization code.'}}), 400
+            
+        code_record = AccessCode.query.filter_by(code=access_code_str).first()
+        if not code_record:
+            return jsonify({'success': False, 'error': {'message': 'Invalid or expired authorization code.'}}), 400
+            
+        if code_record.status != 'ACTIVE' or code_record.expires_at < datetime.utcnow() or code_record.role_type != role:
+            return jsonify({'success': False, 'error': {'message': 'Invalid or expired authorization code.'}}), 400
+
     hashed_pw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
     
-    # Role Logic
-    role = 'PUBLIC'
-    if role_code == 'ADMIN999':
-        role = 'ADMIN'
-    elif role_code == 'FOREST123':
-        role = 'DEPARTMENT'
-
-    new_user = User(name=name, email=email, password_hash=hashed_pw, role=role)
+    new_user = User(
+        name=name, 
+        email=email, 
+        phone=phone,
+        department=department if role == 'DEPARTMENT' else None,
+        designation=designation if role == 'DEPARTMENT' else None,
+        password_hash=hashed_pw, 
+        role=role,
+        account_status='ACTIVE'
+    )
     db.session.add(new_user)
+    db.session.flush() # Get new_user.id
+
+    if role in ['DEPARTMENT', 'ADMIN']:
+        code_record = AccessCode.query.filter_by(code=access_code_str).first()
+        code_record.status = 'USED'
+        code_record.used_at = datetime.utcnow()
+        code_record.used_by = new_user.id
+
     db.session.commit()
 
     token = jwt.encode({
@@ -59,6 +89,9 @@ def login():
     if not user or not bcrypt.checkpw(password.encode('utf-8'), user.password_hash.encode('utf-8')):
         return jsonify({'success': False, 'error': {'message': 'Invalid credentials'}}), 401
 
+    if user.account_status != 'ACTIVE':
+        return jsonify({'success': False, 'error': {'message': 'Account is suspended or pending approval'}}), 403
+
     token = jwt.encode({
         'sub': user.id,
         'role': user.role,
@@ -72,4 +105,3 @@ def login():
             'user': user.to_dict()
         }
     }), 200
-

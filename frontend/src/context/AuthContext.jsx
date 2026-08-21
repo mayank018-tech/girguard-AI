@@ -45,10 +45,10 @@ export const AuthProvider = ({ children }) => {
         return data.user;
     };
 
-    const signup = async (name, email, password, roleCode) => {
+    const signup = async (userData) => {
         const data = await apiCall('/auth/signup', {
             method: 'POST',
-            body: JSON.stringify({ name, email, password, role_code: roleCode })
+            body: JSON.stringify(userData)
         });
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.user.role);
