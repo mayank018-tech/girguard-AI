@@ -1,4 +1,4 @@
-"""Alert model."""
+﻿"""Alert model."""
 
 import datetime
 import enum
@@ -16,7 +16,7 @@ class Alert(db.Model):
     __tablename__ = "alerts"
 
     id = db.Column(db.String(30), primary_key=True)
-    village_id = db.Column(db.String(20), db.ForeignKey("villages.id"), nullable=False)
+    village_id = db.Column(db.String(20), db.ForeignKey("villages.id"), nullable=False, index=True)
     species = db.Column(db.String(30), nullable=False)
     risk_score = db.Column(db.Integer, nullable=False)
     risk_level = db.Column(db.String(20), nullable=False)
@@ -47,3 +47,4 @@ class Alert(db.Model):
             "acknowledged_at": self.acknowledged_at.isoformat() if self.acknowledged_at else None,
             "resolved_at": self.resolved_at.isoformat() if self.resolved_at else None,
         }
+

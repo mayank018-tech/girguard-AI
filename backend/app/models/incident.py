@@ -32,16 +32,16 @@ class Incident(db.Model):
     __tablename__ = "incidents"
 
     id = db.Column(db.String(30), primary_key=True)
-    village_id = db.Column(db.String(20), db.ForeignKey("villages.id"), nullable=False)
+    village_id = db.Column(db.String(20), db.ForeignKey("villages.id"), nullable=False, index=True)
     reported_by = db.Column(db.String(50), db.ForeignKey("users.id"), nullable=True)
-    species = db.Column(db.String(30), nullable=False)
+    species = db.Column(db.String(30), nullable=False, index=True)
     severity = db.Column(db.String(20), nullable=False)
     description = db.Column(db.Text, nullable=True)
     incident_type = db.Column(db.String(100), nullable=True)
     detected_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
     verified_at = db.Column(db.DateTime, nullable=True)
     assigned_team_id = db.Column(db.String(20), db.ForeignKey("response_teams.id"), nullable=True)
-    status = db.Column(db.String(30), nullable=False, default=IncidentStatusEnum.DETECTED.value)
+    status = db.Column(db.String(30), nullable=False, default=IncidentStatusEnum.DETECTED.value, index=True)
     resolution_notes = db.Column(db.Text, nullable=True)
     closed_at = db.Column(db.DateTime, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -67,4 +67,5 @@ class Incident(db.Model):
             "closed_at": self.closed_at.isoformat() if self.closed_at else None,
             "created_at": self.created_at.isoformat() if self.created_at else None,
         }
+
 
