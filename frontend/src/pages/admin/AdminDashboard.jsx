@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Users, AlertTriangle, ShieldCheck, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
                         </div>
                         <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
                             <ShieldCheck className="h-8 w-8 text-green-400 mb-2" />
-                            <div className="text-3xl font-bold">...</div>
+                            <div className="text-3xl font-bold">{stats ? stats.users.officers : '...'}</div>
                             <div className="text-gray-400 text-sm">Active Dept Officers</div>
                         </div>
                         <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">

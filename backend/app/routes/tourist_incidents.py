@@ -7,11 +7,14 @@ from ..extensions import db
 from ..models.tourist_incident import TouristIncident
 from ..utils.responses import success, created, not_found, validation_error, paginate
 from ..utils.validators import parse_int, require_fields
+from ..utils.auth import require_auth
+from ..utils.responses import error
 
 bp = Blueprint("tourist_incidents", __name__, url_prefix="/api/v1/tourist-incidents")
 
 
 @bp.get("")
+@require_auth
 def list_tourist_incidents():
     page = parse_int(request.args.get("page"), default=1, min_val=1)
     per_page = parse_int(request.args.get("per_page"), default=20, min_val=1, max_val=100)
@@ -26,6 +29,7 @@ def list_tourist_incidents():
 
 
 @bp.post("")
+@require_auth
 def create_tourist_incident():
     data = request.get_json(silent=True) or {}
 
@@ -48,7 +52,10 @@ def create_tourist_incident():
 
 
 @bp.patch("/<incident_id>")
+@require_auth
 def patch_tourist_incident(incident_id):
+    if request.user.role not in ("DEPARTMENT", "ADMIN"):
+        return error("FORBIDDEN", "Only department or admin can update tourist incidents.", 403)
     incident = db.session.get(TouristIncident, incident_id)
     if not incident:
         return not_found("TouristIncident")

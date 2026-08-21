@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GirGuard AI â€” Service Abstraction Layer
  *
  * STATE: Connected to Flask REST API when VITE_API_BASE_URL is set.
@@ -33,8 +33,17 @@ let lossCounter = 5010;
 
 async function apiFetch(path, options = {}) {
   const url = `${API_BASE_URL}${path}`;
+  
+  // Get token from localStorage
+  const token = localStorage.getItem('token');
+  const authHeaders = token ? { 'Authorization': 'Bearer ' + token } : {};
+
   const res = await fetch(url, {
-    headers: { 'Content-Type': 'application/json', ...options.headers },
+    headers: { 
+      'Content-Type': 'application/json', 
+      ...authHeaders,
+      ...options.headers 
+    },
     ...options,
   });
   const json = await res.json();

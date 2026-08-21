@@ -5,11 +5,14 @@ from ..extensions import db
 from ..models.response_team import ResponseTeam
 from ..utils.responses import success, not_found, validation_error, paginate
 from ..utils.validators import parse_int
+from ..utils.auth import require_auth
+from ..utils.responses import error
 
 bp = Blueprint("response_teams", __name__, url_prefix="/api/v1/response-teams")
 
 
 @bp.get("")
+@require_auth
 def list_teams():
     page = parse_int(request.args.get("page"), default=1, min_val=1)
     per_page = parse_int(request.args.get("per_page"), default=50, min_val=1, max_val=100)
@@ -24,7 +27,10 @@ def list_teams():
 
 
 @bp.patch("/<team_id>")
+@require_auth
 def patch_team(team_id):
+    if request.user.role not in ("DEPARTMENT", "ADMIN"):
+        return error("FORBIDDEN", "Only department or admin can update teams.", 403)
     team = db.session.get(ResponseTeam, team_id)
     if not team:
         return not_found("ResponseTeam")

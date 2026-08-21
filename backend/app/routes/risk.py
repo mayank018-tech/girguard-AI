@@ -18,6 +18,8 @@ from ..models.incident import Incident
 from ..services import risk_service
 from ..utils.responses import success, not_found, validation_error, paginate
 from ..utils.validators import parse_int
+from ..utils.auth import require_auth
+from ..utils.responses import error
 
 bp = Blueprint("risk", __name__, url_prefix="/api/v1/risk")
 
@@ -69,6 +71,7 @@ def _prediction_to_response(risk_data: dict, village_id: str, village_name: str,
 # ── Routes ─────────────────────────────────────────────────────────────────────
 
 @bp.get("")
+@require_auth
 def list_risk():
     page     = parse_int(request.args.get("page"), default=1, min_val=1)
     per_page = parse_int(request.args.get("per_page"), default=50, min_val=1, max_val=100)
@@ -85,6 +88,7 @@ def list_risk():
 
 
 @bp.get("/village/<village_id>")
+@require_auth
 def risk_for_village(village_id):
     village, recent_sightings, recent_incidents = _fetch_village_context(village_id)
     if village is None:
@@ -112,6 +116,7 @@ def risk_for_village(village_id):
 
 
 @bp.post("/predict")
+@require_auth
 def predict():
     """
     On-demand risk prediction.

@@ -1,4 +1,5 @@
 ﻿from flask import Blueprint, request, jsonify
+from app.utils.auth import require_auth, require_role
 from app.models.user import User
 from app.models.access_code import AccessCode
 from app.extensions import db
@@ -10,16 +11,6 @@ from flask import current_app
 
 bp = Blueprint('admin_auth', __name__, url_prefix='/api/v1/admin')
 
-def get_current_user():
-    auth_header = request.headers.get('Authorization')
-    if not auth_header or not auth_header.startswith('Bearer '):
-        return None
-    token = auth_header.split(' ')[1]
-    try:
-        payload = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
-        return User.query.get(payload['sub'])
-    except:
-        return None
 
 def generate_random_code(role_type):
     prefix = "GIR-DEPT-" if role_type == 'DEPARTMENT' else "GIR-ADMIN-"
@@ -27,10 +18,10 @@ def generate_random_code(role_type):
     return prefix + suffix
 
 @bp.route('/access-codes', methods=['GET'])
+@require_auth
+@require_role('ADMIN')
 def get_access_codes():
-    user = get_current_user()
-    if not user or user.role != 'ADMIN':
-        return jsonify({'success': False, 'error': {'message': 'Unauthorized'}}), 403
+    user = request.user
 
     codes = AccessCode.query.order_by(AccessCode.created_at.desc()).all()
     
@@ -46,10 +37,10 @@ def get_access_codes():
     }), 200
 
 @bp.route('/access-codes', methods=['POST'])
+@require_auth
+@require_role('ADMIN')
 def generate_access_code():
-    user = get_current_user()
-    if not user or user.role != 'ADMIN':
-        return jsonify({'success': False, 'error': {'message': 'Unauthorized'}}), 403
+    user = request.user
 
     data = request.json
     role_type = data.get('role_type')
@@ -74,10 +65,10 @@ def generate_access_code():
     }), 201
 
 @bp.route('/access-codes/<code_id>/revoke', methods=['POST'])
+@require_auth
+@require_role('ADMIN')
 def revoke_access_code(code_id):
-    user = get_current_user()
-    if not user or user.role != 'ADMIN':
-        return jsonify({'success': False, 'error': {'message': 'Unauthorized'}}), 403
+    user = request.user
 
     code_record = AccessCode.query.get(code_id)
     if not code_record:

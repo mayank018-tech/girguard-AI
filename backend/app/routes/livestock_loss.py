@@ -15,6 +15,7 @@ VALID_STATUSES = {s.value for s in LossStatusEnum}
 
 
 @bp.get("")
+@require_auth
 def list_losses():
     page = parse_int(request.args.get("page"), default=1, min_val=1)
     per_page = parse_int(request.args.get("per_page"), default=20, min_val=1, max_val=100)
@@ -31,6 +32,7 @@ def list_losses():
 
 
 @bp.post("")
+@require_auth
 def create_loss():
     data = request.get_json(silent=True) or {}
 
@@ -78,6 +80,7 @@ def create_loss():
 
 
 @bp.get("/<loss_id>")
+@require_auth
 def get_loss(loss_id):
     loss = db.session.get(LivestockLoss, loss_id)
     if not loss:
@@ -86,6 +89,7 @@ def get_loss(loss_id):
 
 
 @bp.patch("/<loss_id>")
+@require_auth
 def patch_loss(loss_id):
     loss = db.session.get(LivestockLoss, loss_id)
     if not loss:

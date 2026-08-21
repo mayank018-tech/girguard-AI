@@ -8,10 +8,12 @@ from ..models.incident import Incident
 from ..utils.responses import success, created, not_found, validation_error, paginate
 from ..utils.validators import parse_int, require_fields
 
+from ..utils.auth import require_auth
+
 bp = Blueprint("incidents", __name__, url_prefix="/api/v1/incidents")
 
-
 @bp.get("")
+@require_auth
 def list_incidents():
     page = parse_int(request.args.get("page"), default=1, min_val=1)
     per_page = parse_int(request.args.get("per_page"), default=20, min_val=1, max_val=100)
@@ -30,6 +32,7 @@ def list_incidents():
 
 
 @bp.post("")
+@require_auth
 def create_incident():
     data = request.get_json(silent=True) or {}
 
@@ -40,6 +43,7 @@ def create_incident():
     incident = Incident(
         id=f"INC-{uuid.uuid4().hex[:8].upper()}",
         village_id=data["village_id"],
+        reported_by=request.user.id,
         species=data["species"],
         severity=data["severity"],
         description=data.get("description"),
@@ -54,6 +58,7 @@ def create_incident():
 
 
 @bp.get("/<incident_id>")
+@require_auth
 def get_incident(incident_id):
     incident = db.session.get(Incident, incident_id)
     if not incident:
@@ -62,10 +67,15 @@ def get_incident(incident_id):
 
 
 @bp.patch("/<incident_id>")
+@require_auth
 def patch_incident(incident_id):
     incident = db.session.get(Incident, incident_id)
     if not incident:
         return not_found("Incident")
+
+    if request.user.role not in ("DEPARTMENT", "ADMIN"):
+        from ..utils.responses import error
+        return error("FORBIDDEN", "Only department or admin can update incidents.", 403)
 
     data = request.get_json(silent=True) or {}
 

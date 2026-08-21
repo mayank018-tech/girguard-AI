@@ -7,6 +7,8 @@ from ..extensions import db
 from ..models.alert import Alert, AlertStatusEnum
 from ..utils.responses import success, created, not_found, validation_error, paginate
 from ..utils.validators import parse_int, require_fields
+from ..utils.auth import require_auth
+from ..utils.responses import error
 
 bp = Blueprint("alerts", __name__, url_prefix="/api/v1/alerts")
 
@@ -14,6 +16,7 @@ VALID_STATUSES = {s.value for s in AlertStatusEnum}
 
 
 @bp.get("")
+@require_auth
 def list_alerts():
     page = parse_int(request.args.get("page"), default=1, min_val=1)
     per_page = parse_int(request.args.get("per_page"), default=20, min_val=1, max_val=100)
@@ -34,7 +37,10 @@ def list_alerts():
 
 
 @bp.post("")
+@require_auth
 def create_alert():
+    if request.user.role not in ("DEPARTMENT", "ADMIN"):
+        return error("FORBIDDEN", "Only department or admin can create alerts.", 403)
     data = request.get_json(silent=True) or {}
 
     missing = require_fields(data, ["village_id", "species", "risk_score", "risk_level"])
@@ -58,6 +64,7 @@ def create_alert():
 
 
 @bp.get("/<alert_id>")
+@require_auth
 def get_alert(alert_id):
     alert = db.session.get(Alert, alert_id)
     if not alert:
@@ -66,7 +73,10 @@ def get_alert(alert_id):
 
 
 @bp.patch("/<alert_id>")
+@require_auth
 def patch_alert(alert_id):
+    if request.user.role not in ("DEPARTMENT", "ADMIN"):
+        return error("FORBIDDEN", "Only department or admin can update alerts.", 403)
     alert = db.session.get(Alert, alert_id)
     if not alert:
         return not_found("Alert")

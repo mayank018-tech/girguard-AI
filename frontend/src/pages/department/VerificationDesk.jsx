@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { CheckCircle, XCircle, Clock, MapPin, Search, Camera } from 'lucide-react';
 
@@ -26,13 +26,13 @@ const VerificationDesk = () => {
 
     const handleVerify = async (id, status) => {
         try {
-            await apiCall(/sightings/ + id, {
+            await apiCall('/sightings/' + id, {
                 method: 'PATCH',
                 body: JSON.stringify({ verification_status: status })
             });
             // Remove from list
             setSightings(sightings.filter(s => s.id !== id));
-            alert(`Sighting marked as !`);
+            alert(`Sighting marked as ${status}!`);
         } catch (err) {
             alert('Error updating sighting: ' + err.message);
         }

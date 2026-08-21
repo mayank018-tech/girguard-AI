@@ -5,11 +5,14 @@ from ..extensions import db
 from ..models.village import Village
 from ..utils.responses import success, not_found, paginate
 from ..utils.validators import parse_int
+from ..utils.auth import require_auth
+from ..utils.responses import error
 
 bp = Blueprint("villages", __name__, url_prefix="/api/v1/villages")
 
 
 @bp.get("")
+@require_auth
 def list_villages():
     page = parse_int(request.args.get("page"), default=1, min_val=1)
     per_page = parse_int(request.args.get("per_page"), default=50, min_val=1, max_val=100)
@@ -20,6 +23,7 @@ def list_villages():
 
 
 @bp.get("/<village_id>")
+@require_auth
 def get_village(village_id):
     village = db.session.get(Village, village_id)
     if not village:
