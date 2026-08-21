@@ -32,7 +32,7 @@ const VerificationDesk = () => {
             });
             // Remove from list
             setSightings(sightings.filter(s => s.id !== id));
-            alert(Sighting marked as !);
+            alert(`Sighting marked as !`);
         } catch (err) {
             alert('Error updating sighting: ' + err.message);
         }
@@ -103,4 +103,5 @@ const VerificationDesk = () => {
     );
 };
 export default VerificationDesk;
+
 

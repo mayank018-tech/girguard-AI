@@ -26,12 +26,12 @@ const UserManagement = () => {
 
     const handleRoleChange = async (userId, newRole) => {
         try {
-            await apiCall(/users/ + userId + /role, {
+            await apiCall('/users/' + userId + '/role', {
                 method: 'PATCH',
                 body: JSON.stringify({ role: newRole })
             });
             setUsers(users.map(u => u.id === userId ? { ...u, role: newRole } : u));
-            alert(User role updated to !);
+            alert(`User role updated to !`);
         } catch (err) {
             alert('Failed to update role: ' + err.message);
         }
@@ -111,3 +111,5 @@ const UserManagement = () => {
     );
 };
 export default UserManagement;
+
+
