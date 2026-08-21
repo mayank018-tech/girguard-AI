@@ -14,10 +14,11 @@ export const AuthProvider = ({ children }) => {
             ...(token ? { 'Authorization': 'Bearer ' + token } : {}),
             ...options.headers
         };
-        const res = await fetch(API_BASE_URL + endpoint, { ...options, headers });
+        const baseUrl = API_BASE_URL || 'http://localhost:5000/api/v1';
+        const res = await fetch(baseUrl + endpoint, { ...options, headers });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error?.message || 'API Error');
-        return data;
+        return data.data; // Return just the data part (token and user)
     };
 
     useEffect(() => {
@@ -37,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.user.role);
         setUser(data.user);
+        return data.user;
     };
 
     const signup = async (name, email, password, roleCode) => {
@@ -47,6 +49,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.user.role);
         setUser(data.user);
+        return data.user;
     };
 
     const logout = () => {
