@@ -22,7 +22,7 @@ const ReportSighting = () => {
                 method: 'POST',
                 body: JSON.stringify({
                     species,
-                    sighting_date: date,
+                    date: date,
                     sighting_time: time,
                     description,
                     image_url: imageUrl || null
@@ -123,3 +123,4 @@ const ReportSighting = () => {
     );
 };
 export default ReportSighting;
+

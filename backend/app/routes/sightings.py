@@ -1,8 +1,8 @@
-"""Wildlife sightings routes.
+﻿"""Wildlife sightings routes.
 
 Event hook: when a sighting is set to VERIFIED (POST or PATCH),
 a new risk prediction is computed and persisted for the village.
-This is a synchronous hook — real-time streaming can be added in Task 4.
+This is a synchronous hook â€” real-time streaming can be added in Task 4.
 """
 
 import uuid
@@ -11,6 +11,7 @@ import logging
 import json
 
 from flask import Blueprint, request
+from app.utils.auth import require_auth
 from ..extensions import db
 from ..models.sighting import WildlifeSighting
 from ..models.village import Village
@@ -51,10 +52,11 @@ def list_sightings():
 
 
 @bp.post("")
+@require_auth
 def create_sighting():
     data = request.get_json(silent=True) or {}
 
-    missing = require_fields(data, ["species", "date", "village"])
+    missing = require_fields(data, ["species", "date"])
     if missing:
         return validation_error(f"Missing required fields: {', '.join(missing)}")
 
@@ -72,6 +74,7 @@ def create_sighting():
     sighting_id = f"SIGHT-{uuid.uuid4().hex[:8].upper()}"
 
     sighting = WildlifeSighting(
+        user_id=request.user.id,
         id=sighting_id,
         species=data["species"],
         sighting_date=sighting_date,
@@ -182,3 +185,4 @@ def _trigger_risk_update(village_id: str) -> None:
             )
     except Exception as exc:
         logger.error("[sightings] Risk update failed for village %s: %s", village_id, exc)
+
