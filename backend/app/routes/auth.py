@@ -6,7 +6,7 @@ import jwt
 from datetime import datetime, timedelta
 from flask import current_app
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__, url_prefix='/api/v1/auth')
 
 @bp.route('/signup', methods=['POST'])
 def signup():
@@ -72,3 +72,4 @@ def login():
             'user': user.to_dict()
         }
     }), 200
+
