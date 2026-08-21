@@ -1,7 +1,5 @@
-"""Central error handlers."""
-
-from flask import jsonify
-
+﻿from flask import jsonify
+import traceback
 
 def register_error_handlers(app):
     @app.errorhandler(400)
@@ -20,6 +18,6 @@ def register_error_handlers(app):
     def unprocessable(e):
         return jsonify({"success": False, "error": {"code": "UNPROCESSABLE", "message": str(e)}}), 422
 
-    @app.errorhandler(500)
-    def internal_error(e):
-        return jsonify({"success": False, "error": {"code": "INTERNAL_ERROR", "message": "An unexpected error occurred."}}), 500
+    @app.errorhandler(Exception)
+    def handle_exception(e):
+        return jsonify({"success": False, "error": {"code": "INTERNAL_ERROR", "message": str(e), "traceback": traceback.format_exc()}}), 500
