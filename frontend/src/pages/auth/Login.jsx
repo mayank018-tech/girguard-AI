@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const user = await login(email, password);
-            if (user.role === 'DEPARTMENT') navigate('/dashboard');
+            if (user.role === 'DEPARTMENT' || user.role === 'ADMIN') navigate('/dashboard');
             else navigate('/public');
         } catch (err) {
             setError(err.message);
@@ -70,3 +70,4 @@ const Login = () => {
     );
 };
 export default Login;
+

@@ -16,7 +16,7 @@ const Signup = () => {
         e.preventDefault();
         try {
             const user = await signup(name, email, password, roleCode);
-            if (user.role === 'DEPARTMENT') navigate('/dashboard');
+            if (user.role === 'DEPARTMENT' || user.role === 'ADMIN') navigate('/dashboard');
             else navigate('/public');
         } catch (err) {
             setError(err.message);
@@ -92,3 +92,4 @@ const Signup = () => {
     );
 };
 export default Signup;
+
