@@ -18,6 +18,7 @@ import AIAssistantPage from '../pages/AIAssistantPage.jsx';
 import Login from '../pages/auth/Login';
 import Signup from '../pages/auth/Signup';
 import PublicDashboard from '../pages/public/PublicDashboard';
+import AdminDashboard from '../pages/admin/AdminDashboard';
 import ReportSightingPublic from '../pages/public/ReportSighting';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
@@ -37,8 +38,8 @@ const AppRouter = () => {
     return (
         <Routes>
             {/* Public/Auth Routes */}
-            <Route path="/login" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : '/public'} /> : <Login />} />
-            <Route path="/signup" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : '/public'} /> : <Signup />} />
+            <Route path="/login" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Login />} />
+            <Route path="/signup" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Signup />} />
             
             {/* Public Portal */}
             <Route path="/public" element={
@@ -71,10 +72,16 @@ const AppRouter = () => {
                 <Route path="ai-assistant" element={<AIAssistantPage />} />
             </Route>
 
+            <Route path="/admin" element={
+                <ProtectedRoute requiredRole="ADMIN">
+                    <AdminDashboard />
+                </ProtectedRoute>
+            } />
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
     );
 };
 export default AppRouter;
+
 
 
