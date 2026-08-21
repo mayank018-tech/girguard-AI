@@ -41,25 +41,15 @@ const AppRouter = () => {
             <Route path="/login" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Login />} />
             <Route path="/signup" element={user ? <Navigate to={user.role === 'DEPARTMENT' ? '/dashboard' : user.role === 'ADMIN' ? '/admin' : '/public'} /> : <Signup />} />
             
-            {/* Public Portal */}
-            <Route path="/public" element={
-                <ProtectedRoute requiredRole="PUBLIC">
-                    <PublicDashboard />
-                </ProtectedRoute>
-            } />
-            <Route path="/public/report-sighting" element={
-                <ProtectedRoute requiredRole="PUBLIC">
-                    <PublicDashboard />
-                </ProtectedRoute>
-            } />
-
-            {/* Existing App wrapped in Department Role */}
+            {/* All Routes Wrapped by Dynamic Sidebar AppLayout */}
             <Route path="/" element={
                 <ProtectedRoute requiredRole="DEPARTMENT">
                     <AppLayout />
                 </ProtectedRoute>
             }>
                 <Route index element={<LandingPage />} />
+                <Route path="public" element={<ProtectedRoute requiredRole="PUBLIC"><PublicDashboard /></ProtectedRoute>} />
+                <Route path="admin" element={<ProtectedRoute requiredRole="ADMIN"><AdminDashboard /></ProtectedRoute>} />
                 <Route path="dashboard" element={<DashboardPage />} />
                 <Route path="dashboard/verification" element={<VerificationDesk />} />
                 <Route path="alerts" element={<AlertsPage />} />
@@ -72,16 +62,13 @@ const AppRouter = () => {
                 <Route path="ai-assistant" element={<AIAssistantPage />} />
             </Route>
 
-            <Route path="/admin" element={
-                <ProtectedRoute requiredRole="ADMIN">
-                    <AdminDashboard />
-                </ProtectedRoute>
-            } />
+            
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
     );
 };
 export default AppRouter;
+
 
 
 

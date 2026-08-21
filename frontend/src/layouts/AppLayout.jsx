@@ -58,7 +58,7 @@ export default function AppLayout({ children }) {
 
         {/* Nav */}
         <nav className="flex-1 py-4 px-2 overflow-y-auto space-y-0.5">
-          {NAV_ITEMS.map(item => (
+          { (user?.role === 'ADMIN' ? ADMIN_NAV : user?.role === 'DEPARTMENT' ? DEPT_NAV : PUBLIC_NAV).map(item => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -116,4 +116,5 @@ export default function AppLayout({ children }) {
     </div>
   );
 }
+
 
