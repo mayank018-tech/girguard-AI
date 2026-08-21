@@ -1,28 +1,37 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { useAuth } from '../context/AuthContext';
+import { LogOut } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { path: '/dashboard',       label: 'Overview',        icon: '🗺️' },
+  { path: '/dashboard',       label: 'Overview',        icon: '📊' },
   { path: '/alerts',          label: 'Live Alerts',     icon: '🚨' },
-  { path: '/report-sighting', label: 'Report Sighting', icon: '🦁' },
+  { path: '/report-sighting', label: 'Report Sighting', icon: '🐾' },
   { path: '/livestock-loss',  label: 'Livestock Loss',  icon: '🐄' },
   { path: '/tourist',         label: 'Tourist Safety',  icon: '🏕️' },
   { path: '/forest-command',  label: 'Forest Command',  icon: '🛡️' },
-  { path: '/incidents',       label: 'Incidents',       icon: '⚡' },
-  { path: '/hotspots',        label: 'Hotspots',        icon: '📊' },
+  { path: '/incidents',       label: 'Incidents',       icon: '⚠️' },
+  { path: '/hotspots',        label: 'Hotspots',        icon: '🔥' },
   { path: '/ai-assistant',    label: 'AI Assistant',    icon: '🤖' },
 ];
 
 export default function AppLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const isLanding = location.pathname === '/';
 
   if (isLanding) return <>{children}</>;
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
-    <div className="flex h-screen bg-gray-950 text-gray-100 overflow-hidden">
+    <div className="flex h-screen bg-earth-950 text-earth-100 overflow-hidden">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -33,21 +42,17 @@ export default function AppLayout({ children }) {
 
       {/* Sidebar */}
       <aside className={clsx(
-        'fixed lg:static inset-y-0 left-0 z-30 w-64 bg-gray-900 border-r border-gray-800 flex flex-col transform transition-transform duration-200 ease-in-out',
+        'fixed lg:static inset-y-0 left-0 z-30 w-64 bg-earth-900 border-r border-earth-800 flex flex-col transform transition-transform duration-200 ease-in-out',
         sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       )}>
         {/* Logo */}
-        <div className="px-4 py-5 border-b border-gray-800">
+        <div className="px-4 py-5 border-b border-earth-800">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-green-800 rounded-lg flex items-center justify-center text-lg flex-shrink-0">🦁</div>
+            <div className="w-9 h-9 bg-forest-800 rounded-lg flex items-center justify-center text-lg flex-shrink-0">🦁</div>
             <div>
               <div className="font-bold text-white text-base leading-tight">GirGuard AI</div>
-              <div className="text-xs text-gray-500 leading-tight">Wildlife Command Center</div>
+              <div className="text-xs text-earth-400 leading-tight">Wildlife Command Center</div>
             </div>
-          </div>
-          <div className="mt-3 bg-indigo-950/50 border border-indigo-800/50 rounded-md px-2 py-1.5">
-            <div className="text-xs text-indigo-300 font-medium leading-tight">Powered by IBM Granite + IBM Cloud</div>
-            <div className="text-xs text-indigo-500 mt-0.5">Integration — Next Phase</div>
           </div>
         </div>
 
@@ -61,8 +66,8 @@ export default function AppLayout({ children }) {
               className={({ isActive }) => clsx(
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors',
                 isActive
-                  ? 'bg-green-900/50 text-green-300 font-medium border border-green-800/50'
-                  : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200'
+                  ? 'bg-forest-900/50 text-forest-300 font-medium border border-forest-800/50'
+                  : 'text-earth-400 hover:bg-earth-800 hover:text-earth-200'
               )}
             >
               <span className="text-base w-5 text-center">{item.icon}</span>
@@ -72,18 +77,23 @@ export default function AppLayout({ children }) {
         </nav>
 
         {/* Footer */}
-        <div className="px-4 py-3 border-t border-gray-800">
-          <div className="text-xs text-gray-600">Gir Forest, Gujarat, India</div>
-          <div className="text-xs text-amber-600/70 mt-1">⚠ Demo Mode — Mock Data</div>
+        <div className="px-4 py-3 border-t border-earth-800 flex items-center justify-between">
+          <div className="text-xs text-earth-500">
+            <div>{user?.name || 'Forest Ranger'}</div>
+            <div className="text-forest-400 font-bold">{user?.role || 'DEPARTMENT'}</div>
+          </div>
+          <button onClick={handleLogout} className="p-2 bg-red-900/30 hover:bg-red-900/60 text-red-400 rounded-md transition-colors" title="Logout">
+            <LogOut size={16} />
+          </button>
         </div>
       </aside>
 
       {/* Main area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top bar */}
-        <header className="bg-gray-900 border-b border-gray-800 px-4 py-3 flex items-center gap-3 flex-shrink-0">
+        <header className="bg-earth-900 border-b border-earth-800 px-4 py-3 flex items-center gap-3 flex-shrink-0">
           <button
-            className="lg:hidden p-1.5 rounded-md hover:bg-gray-800 text-gray-400"
+            className="lg:hidden p-1.5 rounded-md hover:bg-earth-800 text-earth-400"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,27 +101,15 @@ export default function AppLayout({ children }) {
             </svg>
           </button>
           <div className="flex-1 flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 text-xs text-gray-500">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <div className="hidden sm:flex items-center gap-2 text-xs text-earth-400">
+              <span className="w-2 h-2 bg-forest-400 rounded-full animate-pulse" />
               System Online
-            </div>
-            <div className="hidden md:flex items-center gap-2 text-xs text-amber-400/80 bg-amber-950/40 border border-amber-800/40 px-2 py-1 rounded">
-              ⚠ DEMO MODE — Synthetic Data
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="text-xs text-red-400 font-semibold bg-red-950/50 border border-red-800/50 px-2 py-1 rounded flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" />
-              2 CRITICAL
-            </div>
-            <div className="w-8 h-8 bg-green-900 rounded-full flex items-center justify-center text-sm font-bold text-green-300 border border-green-700">
-              FO
             </div>
           </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto bg-gray-950 p-4 lg:p-6">
+        <main className="flex-1 overflow-y-auto bg-earth-950 p-4 lg:p-6">
           {children}
         </main>
       </div>
