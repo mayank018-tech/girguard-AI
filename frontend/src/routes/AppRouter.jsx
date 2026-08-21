@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import AppLayout from '../layouts/AppLayout.jsx';
 
 import LandingPage from '../pages/LandingPage.jsx';
+import VerificationDesk from '../pages/department/VerificationDesk.jsx';
 import DashboardPage from '../pages/DashboardPage.jsx';
 import AlertsPage from '../pages/AlertsPage.jsx';
 import ReportSightingPage from '../pages/ReportSightingPage.jsx';
@@ -59,6 +60,7 @@ const AppRouter = () => {
             }>
                 <Route index element={<LandingPage />} />
                 <Route path="dashboard" element={<DashboardPage />} />
+                <Route path="dashboard/verification" element={<VerificationDesk />} />
                 <Route path="alerts" element={<AlertsPage />} />
                 <Route path="report-sighting" element={<ReportSightingPage />} />
                 <Route path="livestock-loss" element={<LivestockLossPage />} />
@@ -74,4 +76,5 @@ const AppRouter = () => {
     );
 };
 export default AppRouter;
+
 
