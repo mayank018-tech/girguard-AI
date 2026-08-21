@@ -1,4 +1,4 @@
-"""GirGuard AI — Flask Application Factory."""
+﻿"""GirGuard AI â€” Flask Application Factory."""
 
 from flask import Flask
 from flask_cors import CORS
@@ -35,10 +35,11 @@ def create_app(config_name: str = None) -> Flask:
     from .routes.tourist_incidents import bp as tourist_bp
 
     from .routes.auth import bp as auth_bp
+    from .routes.users import bp as users_bp
 
     for blueprint in [
         health_bp, villages_bp, sightings_bp, risk_bp,
-        alerts_bp, incidents_bp, teams_bp, livestock_bp, tourist_bp, auth_bp
+        alerts_bp, incidents_bp, teams_bp, livestock_bp, tourist_bp, auth_bp, users_bp
     ]:
         app.register_blueprint(blueprint)
 
@@ -46,3 +47,4 @@ def create_app(config_name: str = None) -> Flask:
     register_error_handlers(app)
 
     return app
+
